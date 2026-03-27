@@ -57,7 +57,7 @@ The file `SWAP TTL Program Jan '26 Week 3.xlsx` is the manually produced weekly 
 | Value | Count | Description |
 |---|---|---|
 | `Permanent` | 228 | JTI direct employee on a permanent contract. Name populated in `Brand Ambassador`. |
-| `Radical` | 161 | External collaborator (third-party). No `Brand Ambassador` name. No `Base` city. |
+| `Radical` | 161 | External collaborator (third-party). `Brand Ambassador` and `Base` are currently missing in the Excel — this is a data quality issue; full data will be available via JTI's data infrastructure integration. |
 | `Exclusive` | 39 | JTI employee on an exclusive contract. Name populated in `Brand Ambassador`. |
 
 ---
@@ -162,7 +162,7 @@ This is an early-stage PoC. The following questions are unresolved and should be
 
 ### Promoter / Programme types
 
-1. **`Radical` programme roster** — Radical promoters (external collaborators) do not appear in the `Personnel` sheet. How are they identified and assigned? Do they come from a specific agency with their own codes, or are they treated as an interchangeable pool? Is there a separate roster for them?
+1. ~~**`Radical` programme roster**~~ — **Resolved.** Radical rows represent external promoters visiting a POS. Missing `Brand Ambassador` and `Base` values in the current Excel are **data quality issues**, not by design. This data will be available when the tool integrates with JTI's data infrastructure.
 
 2. **`Exclusive` vs `Permanent`** — Both appear in `Personnel` as JTI employees. What is the practical distinction? Is `Exclusive` a third-party contractor exclusively dedicated to JTI (not on direct payroll), while `Permanent` is a full-time direct hire?
 
