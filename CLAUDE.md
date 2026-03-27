@@ -2,224 +2,41 @@
 
 ## Instructions for Claude
 
-- After **any backend change**, run: `cd backend && ../.venv/Scripts/python.exe -m black . && ../.venv/Scripts/python.exe -m isort . && ../.venv/Scripts/python.exe -m flake8 .`
-  - Or via Makefile: `make be-lint`
-- After **any frontend change**, run: `cd frontend && npm run lint`
-  - Or via Makefile: `make fe-lint`
+- After **any backend change**, run `make be-lint` (auto-fixes black + isort, then checks flake8).
+- After **any frontend change**, run `make fe-lint`.
 - Fix all lint errors before considering a task complete.
-
-## Source Excel Schedule — Structure & Attributes
-
-The file `SWAP TTL Program Jan '26 Week 3.xlsx` is the manually produced weekly promoter visit schedule. It is the primary reference for what the tool must automate. It contains 10 sheets:
-
----
-
-### Main Schedule Sheet: `SWAP TTL Program Jan '26_W3`
-
-~428 rows of planned visit activities. Each row = one promoter visit to one POS.
-
-| Column | Type | Description |
-|---|---|---|
-| `Week` | string | Week identifier (e.g. `W1`, `W3`) |
-| `Base` | string | Promoter's home city (Athens, Thessaloniki, Patra, Irakleio, Kozani, Volos, Alexandroupoli, Kavala). Null for `Radical` rows. |
-| `Program` | enum | Type of promoter assignment — see Programme Types below |
-| `Out of Premises` | flag | `Yes` if visit occurs outside the POS premises; null otherwise |
-| `Brand Ambassador` | string | Promoter identifier in format `SPC_<Lastname> <Firstname>`. Populated only for `Permanent` and `Exclusive` programme types. Null for `Radical`. |
-| `Date` | date | Visit date |
-| `Start` | time | Visit start time |
-| `End` | time | Visit end time |
-| `Duration` | time | Duration of visit (End − Start) |
-| `CDB Code` | string | Unique POS identifier (e.g. `60-072345`) |
-| `POS Name` | string | Name of the Point of Sale |
-| `Priority` | enum | POS tier: `Strategic`, `Prime`, `BaseLine` / `Baseline`, `Developing` |
-| `Type` | string | POS category (e.g. `ΠΕΡΙΠΤΕΡΟ` = kiosk, `CONVENIENCE`, `ΨΙΛΙΚΟ` = minimarket, `VAPE STORE`) |
-| `Address` | string | Street address |
-| `City` | string | City |
-| `County` | string | Prefecture/county |
-| `Department` | string | Geographic department |
-| `Chain` | string | Retail chain name if applicable |
-| `District` | string | Sales district (e.g. `CENTRAL (DKR)`, `EAST (NF)`, `WEST (MA)`) |
-| `Territory` | string | Sales territory (e.g. `C_03. ΜΠΑΛΑΜΑΤΣΗ`) |
-| `W/H` | string | Warehouse/distributor company name |
-| `Telephone` | number | POS landline |
-| `Mobile` | number | POS mobile |
-| `Contractor` | string | Contract company supplying the POS (e.g. `JTI`, `Competition`, `Owner`) |
-| `PoS Gift` | string | Gift/offer status (`Yes`, `Only Offer`) |
-| `Contact Details` | string | Contact notes (e.g. "Don't call Key Account") |
-| `Action` | enum | Visit outcome: `Executed`, `Cancelled`, `Change Visit`, `Double Visit` |
-| `Reason` | enum | Reason for action (Cancelled/Change): e.g. `No Device`, `PoS Rejection`, `Closed PoS`, `Weather Conditions`, etc. |
-| `Comments` | string | Free-text notes |
-| `Ploom Smoker` | string | Ploom product smoker-related field (unclear — needs clarification) |
-| `Comments Meeting` | string | Notes from the visit meeting |
-
-#### Programme Types (`Program` column)
-
-| Value | Count | Description |
-|---|---|---|
-| `Permanent` | 228 | JTI direct employee on a permanent contract. Name populated in `Brand Ambassador`. |
-| `Radical` | 161 | External collaborator (third-party). `Brand Ambassador` and `Base` are currently missing in the Excel — this is a data quality issue; full data will be available via JTI's data infrastructure integration. |
-| `Exclusive` | 39 | JTI employee on an exclusive contract. Name populated in `Brand Ambassador`. |
-
----
-
-### Sheet: `Personnel`
-
-Master list of all JTI promoters (Permanent + Exclusive). ~46 records.
-
-| Column | Description |
-|---|---|
-| `Username` | System username in format `SPC_<Lastname> <Firstname>` |
-| `Promoter Code` | Unique code e.g. `GR_000072` |
-| `First Name` / `Last Name` | Name |
-| `Type` | `Permanent` or `Exclusive` |
-| `City` | Home base city |
-| `Area` | Team: `SOUTH TEAM` (Athens-based) or `NORTH TEAM` (Thessaloniki-based) |
-
----
-
-### Sheet: `CDB List`
-
-Master POS registry. ~866 records.
-
-| Column | Description |
-|---|---|
-| `CDB Code` | Unique POS identifier |
-| `POS Name` | Name |
-| `Pos Classification` | `Strategic`, `BaseLine` |
-| `Type` | POS category |
-| `Address`, `City`, `County` | Location |
-| `Geography - geo_Department`, `District`, `Territory` | Sales geography hierarchy |
-| `W/H` | Warehouse/distributor |
-| `Chain` | Retail chain |
-| `Contractor` | Contract owner (`JTI`, `Competition`, `Owner`) |
-| `Contact Details` | Contact notes |
-| `PoS Gift` | Gift eligibility |
-| `Action`, `Reason`, `Comments` | Current status flags |
-| `Telephone`, `Mobile` | Contact numbers |
-| `Trade Offer`, `EVO_RetentionOffer` | Offer flags |
-
----
-
-### Sheet: `Priority`
-
-POS-level analysis with recommended visit windows. Used to inform scheduling decisions.
-
-Key columns beyond standard POS fields:
-
-| Column | Description |
-|---|---|
-| `pos_VolumeClass` | Volume class of POS (A, B, Γ) |
-| `# of Programs LTD` | Total visits to date |
-| `# of Sold Devices LTD` | Total devices sold to date |
-| `Av. Sold Device LTD` | Average devices sold per visit |
-| `Suitable for SWAP` | Whether POS is suitable for SWAP programme |
-| `Priority` | Recommended priority tier |
-| `In Program` | Whether POS is currently in active programme |
-| `Day 1/2/3` | Recommended visit days |
-| `Time 1/2/3` | Recommended visit times |
-| `W44–W48` | Weekly visit tracking columns |
-
----
-
-### Sheet: `schedules`
-
-**Output template** — the structured format the tool should produce to feed downstream systems.
-
-| Column | Description |
-|---|---|
-| `scheduleCode` | Sequential schedule ID |
-| `tenantCode` | Country tenant (`gr` for Greece) |
-| `promoterCode` | Promoter code (e.g. `GR_000069`) |
-| `agencyCode` | Agency (`SPC`) |
-| `posCode` | POS code in format `GR_<7-digit>` |
-| `startAt` | ISO datetime string (e.g. `2025-09-29T09:00`) |
-| `endAt` | ISO datetime string |
-
----
-
-### Sheet: `Strategic PoS_Montly Plan`
-
-Monthly planning view of strategic POS — higher-level schedule grid (not per-activity row).
-
-### Sheet: `Detailed Pan Provences`
-
-Detailed province-level planning breakdown.
-
-### Sheet: `DropDownLists`
-
-Reference values for dropdown fields used in the schedule:
-
-- **Action**: `Change Visit`, `Cancelled`, `Double Visit`, `Executed`
-- **Reason**: `No Device`, `Brand Ambassador`, `New PoS`, `PoS Rejection`, `Competitors Activities`, `No Reason`, `Deny Promotion Activities`, `No Device & Sticks`, `No Sticks`, `Closed PoS`, `Closed PoS / Temporary`, `JTI`, `Tactical Routing`, `OOS (during activity)`, `Communication`, `Cover change`, `Weather Conditions`, `Offers problem`, `Filters`, `Radical`, `Other`
-- **Trade Offer**: `Dev+3packs: 29€`, `Device+3packs: 29€`
-- **PoS Gift**: `Yes`, `No`
-
----
-
-## Open Questions & Clarifications Needed
-
-This is an early-stage PoC. The following questions are unresolved and should be clarified with stakeholders before building the scheduling logic. More may emerge as development progresses.
-
-### Promoter / Programme types
-
-1. ~~**`Radical` programme roster**~~ — **Resolved.** Radical rows represent external promoters visiting a POS. Missing `Brand Ambassador` and `Base` values in the current Excel are **data quality issues**, not by design. This data will be available when the tool integrates with JTI's data infrastructure.
-
-2. **`Exclusive` vs `Permanent`** — Both appear in `Personnel` as JTI employees. What is the practical distinction? Is `Exclusive` a third-party contractor exclusively dedicated to JTI (not on direct payroll), while `Permanent` is a full-time direct hire?
-
-3. **`Base` column** — Appears to be the promoter's home city; always null for `Radical` rows. Is that because Radical promoters are local to the POS area and don't have a tracked base, or simply that the data isn't captured?
-
-### Scheduling logic & output
-
-4. **`schedules` sheet as output target** — This sheet looks like a structured output template (`promoterCode`, `posCode`, `startAt`, `endAt`) meant to feed a downstream system. Is the primary deliverable of this tool rows in this format, and what system consumes it?
-
-5. **`Priority` sheet: `Day 1/2/3` + `Time 1/2/3`** — Are these the manually determined optimal visit slots per POS that the AI tool should learn to generate automatically? If so, are they the ground truth for model training/validation?
-
-### POS & territory data
-
-6. **`W/H` column** — Is the warehouse/distributor relevant to scheduling? E.g. are certain promoters tied to specific distributors, or does it only affect logistics?
-
-7. **`Contractor` column** (`JTI`, `Competition`, `Owner`) — Does the contractor type affect which POS gets scheduled, which programme type is used, or which promoter is assigned?
 
 ---
 
 ## Business Context
 
-### What this tool is
+An AI-powered **promoter scheduling application** piloted in **JTI Greece**. It automates the planning of promoter/informer visits to Points of Sale (POS — retail kiosks) to maximise sales impact.
 
-An AI-powered **promoter scheduling application** being piloted in **JTI Greece**. It automates the planning of promoter/informer visits to Points of Sale (POS — retail kiosks) to maximise sales impact.
+### The problem
 
-### The problem being solved
+Currently scheduling is entirely manual: field teams check each POS individually in BI tools to decide when to visit and who to send. This is slow, error-prone, and leads to visits at suboptimal times.
 
-Currently, the scheduling process is entirely manual:
+### Domain concepts
 
-- **Manual planning**: Field teams check each POS individually in BI tools to identify the best visit times — slow and error-prone.
-- **Complex resource allocation**: Deciding visit frequency per kiosk based on day/time, assigned promoter, and customer traffic requires human judgement and is hard to optimise at scale.
-- **Suboptimal timing**: Visits often happen during low-traffic periods, reducing sales opportunities and wasting promoter time.
-
-### Available input data
-
-Historical activity data with the following fields:
-
-| Field | Description |
+| Term | Meaning |
 |---|---|
-| Activity start & end date/time | When the visit occurred |
-| POS code & location | Which kiosk was visited |
-| Devices sold per activity | Sales outcome of each visit |
-| Interviews conducted | Engagement metric per visit |
-| Assigned informer/promoter | Which promoter ran the activity |
-| Day/time execution patterns | Recurring scheduling patterns |
+| **POS** | Point of Sale — a retail kiosk. Identified by a `CDB Code`. |
+| **Promoter / Informer** | Field staff who visit POS to sell devices and conduct customer interviews. |
+| **Activity / Visit** | One promoter visit to one POS. Has a date, start/end time, and outcome (devices sold, interviews). |
+| **Programme type** | Nature of the promoter assignment: `Permanent` (JTI full-time), `Exclusive` (JTI dedicated contractor), `Radical` (external collaborator). |
+| **Schedule** | A planning period (e.g. next month) containing a set of assigned visits. Created by a scheduling admin. |
 
-### Expected outputs from the tool
+### Tool outputs
 
-1. **Complete visit plan per POS** — automated recommendations for day, time, visit frequency, and promoter assignment.
-2. **Peak time detection** — identifies high-traffic, high-sales time windows per POS from historical data.
-3. **Optimised visit frequency** — suggests how often each POS should be visited to maximise sales impact.
-4. **Promoter–POS matching** — matches the most effective promoter/informer to each POS and time slot based on past performance.
-5. **Exportable output** — full visit plan exportable as Excel, CSV, or PDF for field execution.
+1. Complete visit plan per POS — day, time, frequency, promoter assignment
+2. Peak time detection per POS from historical data
+3. Optimised visit frequency per POS
+4. Promoter–POS matching based on past performance
+5. Exportable plan (Excel / CSV / PDF)
 
 ### Scope
 
-This repository is a **pilot POC for Greece**. The goal is to validate the technical approach and business value before broader rollout.
+Pilot POC for Greece. Goal is to validate approach before broader rollout.
 
 ---
 
@@ -229,29 +46,32 @@ This repository is a **pilot POC for Greece**. The goal is to validate the techn
 jti-promotion-scheduling-poc/
 ├── CLAUDE.md
 ├── Makefile
-├── .github/
-│   └── workflows/
-│       └── ci.yml              # Lint checks on push/PR to main
-├── backend/                    # Django + DRF API
-│   ├── .venv/                  # Python 3.14 venv (managed by uv)
+├── .gitignore
+├── .github/workflows/ci.yml
+├── backend/
+│   ├── .venv/                        # Python 3.14, managed by uv
 │   ├── manage.py
-│   ├── setup.cfg               # flake8 + isort config
-│   ├── pyproject.toml          # black config
-│   ├── config/                 # Django project (settings, urls, wsgi, asgi)
-│   └── api/                    # All /api/* endpoints
-└── frontend/                   # React 19 + Vite 6
+│   ├── setup.cfg                     # flake8 + isort config
+│   ├── pyproject.toml                # black config
+│   ├── config/                       # Django project settings, urls, wsgi, asgi
+│   ├── api/                          # Auth endpoints
+│   ├── scheduling/                   # Core domain models + admin
+│   │   └── fixtures/initial_data.json
+│   ├── metrics/                      # POSMetrics model
+│   └── data_integration/             # CSV importers, DataSyncLog, admin Pull buttons
+│       └── sample_data/              # Sample CSVs for PoC demo
+└── frontend/
     ├── package.json
-    ├── vite.config.js           # proxies /api → :8000
+    ├── vite.config.js                 # proxies /api → :8000
     ├── eslint.config.js
     └── src/
         ├── main.jsx
-        ├── App.jsx              # Router + AuthProvider
-        ├── index.css            # Global styles (Inter font, dark bg)
-        ├── theme.js             # JTI color tokens
-        ├── context/
-        │   └── AuthContext.jsx  # JWT auth state, login/logout helpers
+        ├── App.jsx                    # Router + AuthProvider
+        ├── index.css                  # Global styles
+        ├── theme.js                   # JTI color tokens
+        ├── context/AuthContext.jsx    # JWT auth state, login/logout
         ├── components/
-        │   ├── JtiLogo.jsx      # SVG JTI logo
+        │   ├── JtiLogo.jsx
         │   └── ProtectedRoute.jsx
         └── pages/
             ├── LoginPage.jsx
@@ -262,105 +82,196 @@ jti-promotion-scheduling-poc/
 
 ## Backend
 
-### Python Environment
+### Python environment
 
-- Virtual environment: `backend/.venv/` (Python 3.14)
-- Dependency manager: **uv** (installed inside the venv)
-- uv binary: `backend/.venv/Scripts/uv.exe`
-
-**Never use `pip` directly or `requirements.txt`. Always use `uv`.**
+- Venv: `backend/.venv/` (Python 3.14)
+- Dependency manager: **uv** — `backend/.venv/Scripts/uv.exe`
+- **Never use `pip` or `requirements.txt`. Always use `uv`.**
 
 ```bash
-# Install a package
 backend/.venv/Scripts/uv.exe pip install <package>
-
-# Activate venv (PowerShell)
-backend/.venv/Scripts/Activate.ps1
+backend/.venv/Scripts/Activate.ps1   # activate (PowerShell)
 ```
 
 ### Stack
 
-- Django 6.x
-- Django REST Framework
-- djangorestframework-simplejwt — JWT auth
-- django-cors-headers
+- Django 6.x + Django REST Framework
+- `djangorestframework-simplejwt` — JWT authentication
+- `django-cors-headers`
+- `openpyxl` — Excel reading (fixture/data generation scripts)
+
+### Django apps
+
+| App | Responsibility |
+|---|---|
+| `api` | Auth endpoints: login, logout, me |
+| `scheduling` | Core domain models: PointOfSale, Promoter, Schedule, ScheduledVisit |
+| `metrics` | POSMetrics — time-windowed historical performance per POS |
+| `data_integration` | CSV importers + DataSyncLog; admin Pull buttons |
 
 ### Authentication
 
-- JWT via `djangorestframework-simplejwt`
-- Access token lifetime: **8 hours**
-- Refresh token lifetime: **7 days**, rotation enabled
-- Token blacklist enabled (logout invalidates refresh token)
+JWT via `djangorestframework-simplejwt`:
+- Access token: **8 hours**
+- Refresh token: **7 days**, rotation + blacklist enabled
 
-| Endpoint            | Method | Auth required | Description             |
-|---------------------|--------|---------------|-------------------------|
-| `/api/auth/login/`  | POST   | No            | Returns access + refresh tokens |
-| `/api/auth/logout/` | POST   | Yes           | Blacklists refresh token |
-| `/api/auth/me/`     | GET    | Yes           | Returns current username |
-| `/api/hello/`       | GET    | Yes           | Hello world             |
+| Endpoint | Method | Auth | Description |
+|---|---|---|---|
+| `/api/auth/login/` | POST | No | Returns access + refresh tokens |
+| `/api/auth/logout/` | POST | Yes | Blacklists refresh token |
+| `/api/auth/me/` | GET | Yes | Returns current username |
+| `/api/hello/` | GET | Yes | Hello world (protected) |
 
-All endpoints require authentication by default (`IsAuthenticated` as DRF default).
+All endpoints require `IsAuthenticated` by default. Users created via Django Admin only — no frontend registration.
 
-### User Management
+### Linting
 
-No registration from frontend — users are created via **Django Admin** at `/admin/`.
+| Tool | Purpose | Config |
+|---|---|---|
+| `black` | Formatter | `pyproject.toml` |
+| `isort` | Import sorter | `setup.cfg` |
+| `flake8` | Style/error checker | `setup.cfg` |
 
-```bash
-make be-createsuperuser   # create first admin user
-```
+`max-line-length = 88`. `.venv` and `migrations` excluded.
 
-### Linting (Python)
+---
 
-| Tool   | Purpose             | Config           |
-|--------|---------------------|------------------|
-| black  | Code formatter      | `pyproject.toml` |
-| isort  | Import sorter       | `setup.cfg`      |
-| flake8 | Style/error checker | `setup.cfg`      |
+## Data Model
 
-- `max-line-length = 88` (matches black)
-- `.venv` and `migrations` excluded from all tools
+### `scheduling` app — `backend/scheduling/models.py`
+
+#### `PointOfSale`
+Master POS registry. Unique key: `cdb_code`.
+
+Key fields: `pos_type`, `priority` (Strategic/Prime/BaseLine/Developing), `address/city/county/department/district/territory`, `chain`, `contractor`, `warehouse`, `is_active`.
+
+#### `Promoter`
+All promoter types. Unique key: `username`.
+
+Key fields: `code` (nullable for Radical), `programme_type` (Permanent/Exclusive/Radical), `base_city` (nullable for Radical — data quality gap, will be filled via JTI infrastructure), `team` (SOUTH TEAM / NORTH TEAM, nullable for Radical), `is_active`.
+
+#### `Schedule`
+A planning period container. Lifecycle: `Draft → Published → Archived`.
+
+Constraints:
+- `period_end >= period_start`
+- **No overlapping schedules** — enforced in `clean()`
+- Periods are **arbitrary** (not fixed to month/week)
+- No historical data imported — DB starts fresh going forward
+
+#### `ScheduledVisit`
+One promoter visit to one POS within a schedule. Central fact record.
+
+Key fields: `schedule`, `promoter` (nullable for Radical until data integration), `pos`, `date`, `start_time`, `end_time`, `programme_type` (stored explicitly per visit), `out_of_premises`, `week_label`, `action` (blank = planned, not yet executed), `reason`, `comments`, `comments_meeting`.
+
+Constraints: `end_time > start_time`, `date` must fall within `schedule` period.
+
+---
+
+### `metrics` app — `backend/metrics/models.py`
+
+#### `POSMetrics`
+Historical performance per POS broken down by **time window**. Used by the scheduling AI to detect peak times and prioritise visits.
+
+Fields: `pos`, `reference_type`, `period_start`, `period_end`, `window_date`, `window_start`, `window_end`, `sales`, `interviews`.
+
+Unique constraint: `(pos, reference_type, period_start, period_end, window_date, window_start, window_end)`.
+
+**`reference_type`** — expandable enum:
+- `previous_year` — same calendar period from the prior year *(primary for PoC)*
+- `previous_month` — the immediately preceding month
+
+---
+
+### `data_integration` app — `backend/data_integration/`
+
+#### `DataSyncLog`
+Audit log of every pull operation: `sync_type`, `status` (Success/Failed), `records_created/updated/skipped`, `file_used`, `triggered_by`, `triggered_at`, `notes`.
+
+#### Importers — `data_integration/importers/`
+
+All imports are **idempotent** (upsert). Each returns `{created, updated, skipped, errors}`.
+
+| Module | Match key | Target model |
+|---|---|---|
+| `promoters.py` | `username` | `scheduling.Promoter` |
+| `pos.py` | `cdb_code` | `scheduling.PointOfSale` |
+| `metrics.py` | `(pos, reference_type, period_start, period_end, window_date, window_start, window_end)` | `metrics.POSMetrics` |
+
+Metrics importer parses `period_start`, `period_end`, and `reference_type` from the filename automatically:
+`period_YYYY-MM-DD_YYYY-MM-DD_(previous_year|previous_month)_metrics.csv`
+
+#### Django Admin Pull buttons
+
+In Django Admin → **Data Sync Logs**, three buttons trigger imports from sample CSVs:
+- **↓ Pull Promoters**
+- **↓ Pull Points of Sale**
+- **↓ Pull Metrics**
+
+Each creates a `DataSyncLog` entry with counts and row-level errors.
+
+---
+
+## Test Data
+
+### Fixtures — `backend/scheduling/fixtures/initial_data.json`
+
+Load with: `make be-loaddata`
+
+| Entity | Count | Notes |
+|---|---|---|
+| `auth.User` (admin) | 1 | username: `admin`, password: `admin123!` |
+| `Promoter` (Permanent) | 19 | Real — from Excel `Personnel` sheet |
+| `Promoter` (Exclusive) | 27 | Real — from Excel `Personnel` sheet |
+| `Promoter` (Radical) | 8 | **Fake** — codes prefixed `RAD_`; real data pending JTI integration |
+| `PointOfSale` | 50 | Real — from Excel `CDB List` sheet |
+
+### Sample CSVs — `backend/data_integration/sample_data/`
+
+| File | Rows | Notes |
+|---|---|---|
+| `sample_promoters.csv` | 54 | Same data as fixtures |
+| `sample_pos.csv` | 50 | Same data as fixtures |
+| `period_2026-04-01_2026-04-30_previous_year_metrics.csv` | 408 | Fake but plausible time-windowed metrics |
+
+**Metrics time windows:**
+- Morning `09:00–11:00` — weekdays, ~60% of dates
+- Afternoon `15:00–17:00` or `17:00–19:00` — ~75% of dates
+- Night `21:00–23:00` Fri/Sat only — ~20% of POS flagged as high night-traffic venues
 
 ---
 
 ## Frontend
 
-- Framework: React 19 + Vite 6
-- Directory: `frontend/`
-- Dev server proxies `/api` → `http://localhost:8000`
+Framework: React 19 + Vite 6. Dev server at `:5173`, proxies `/api` → `:8000`.
 
-### Auth Flow
+### Auth flow
 
-1. Unauthenticated users are redirected to `/login`
-2. Login page posts credentials to `/api/auth/login/`
+1. Unauthenticated users redirected to `/login`
+2. `LoginPage` POSTs to `/api/auth/login/`
 3. Access + refresh tokens stored in `localStorage`
-4. `authHeaders()` helper injects `Authorization: Bearer <token>` on API calls
-5. Logout calls `/api/auth/logout/` (blacklists refresh token) and clears storage
+4. `authHeaders()` injects `Authorization: Bearer <token>` on API calls
+5. Logout calls `/api/auth/logout/` and clears storage
 
-### Theming
+### JTI theming — `src/theme.js`
 
-JTI brand colors defined in `src/theme.js`:
+| Token | Value | Usage |
+|---|---|---|
+| `bgPage` | `#141414` | Page background |
+| `bgCard` | `#1e1e1e` | Cards, forms |
+| `bgNavbar` | `#0f0f0f` | Navbar |
+| `bgInput` | `#2a2a2a` | Input fields |
+| `text` | `#ffffff` | Primary text |
+| `textMuted` | `#aaaaaa` | Secondary text |
+| `border` | `#2e2e2e` | Borders |
+| `buttonBg` | `#ffffff` | Primary button |
+| `buttonText` | `#141414` | Primary button text |
 
-| Token        | Value     | Usage                     |
-|--------------|-----------|---------------------------|
-| `bgPage`     | `#141414` | Page background           |
-| `bgCard`     | `#1e1e1e` | Cards, forms              |
-| `bgNavbar`   | `#0f0f0f` | Navbar                    |
-| `bgInput`    | `#2a2a2a` | Input fields              |
-| `text`       | `#ffffff` | Primary text              |
-| `textMuted`  | `#aaaaaa` | Secondary text            |
-| `border`     | `#2e2e2e` | Borders                   |
-| `buttonBg`   | `#ffffff` | Primary button background |
-| `buttonText` | `#141414` | Primary button text       |
+Font: **Inter** (Google Fonts). Logo: SVG in `JtiLogo.jsx`.
 
-Font: **Inter** (Google Fonts)
+### Linting
 
-### Linting (JS)
-
-| Tool   | Purpose | Config             |
-|--------|---------|--------------------|
-| ESLint | Linter  | `eslint.config.js` |
-
-Plugins: `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`
+ESLint with `eslint-plugin-react-hooks` + `eslint-plugin-react-refresh`. Config: `eslint.config.js`.
 
 ---
 
@@ -372,11 +283,12 @@ make help                # List all commands
 # Backend
 make be-run              # Django dev server (:8000)
 make be-migrate          # Apply migrations
-make be-makemigrations   # Create migrations
+make be-makemigrations   # Create new migrations
 make be-install          # Install backend deps via uv
 make be-createsuperuser  # Create Django admin superuser
-make be-lint             # Format + lint (auto-fix)
-make be-lint-check       # Format + lint (CI mode, no changes)
+make be-loaddata         # Load fixture data (promoters, POS, test admin)
+make be-lint             # Format + lint, auto-fix (black + isort + flake8)
+make be-lint-check       # Lint check only, no changes (CI mode)
 
 # Frontend
 make fe-run              # Vite dev server (:5173)
@@ -386,28 +298,80 @@ make fe-lint             # ESLint
 
 # Combined
 make install             # Install all deps
-make lint                # Run all linters in CI mode
+make lint                # All linters in CI mode
 ```
 
 ---
 
-## CI (GitHub Actions)
+## CI — `.github/workflows/ci.yml`
 
-File: `.github/workflows/ci.yml`
+Triggers: push or PR to `main`.
 
-Triggers: push to `main`, PRs targeting `main`
-
-| Job            | Steps                                |
-|----------------|--------------------------------------|
-| backend-lint   | black --check, isort --check, flake8 |
-| frontend-lint  | npm ci, eslint                       |
+| Job | Steps |
+|---|---|
+| `backend-lint` | black --check, isort --check, flake8 |
+| `frontend-lint` | npm ci, eslint |
 
 ---
 
 ## Dev Ports
 
-| Service      | Port |
-|--------------|------|
-| Django API   | 8000 |
-| React / Vite | 5173 |
+| Service | Port |
+|---|---|
+| Django API | 8000 |
 | Django Admin | 8000/admin |
+| React / Vite | 5173 |
+
+---
+
+## Source Excel Reference
+
+File: `SWAP TTL Program Jan '26 Week 3.xlsx` — the manually produced weekly schedule this tool replaces.
+
+### Main schedule sheet: `SWAP TTL Program Jan '26_W3`
+
+Each row = one promoter visit to one POS.
+
+| Column | Description |
+|---|---|
+| `Week` | Week label e.g. `W1`, `W3` |
+| `Base` | Promoter home city. Null for Radical (data quality issue). |
+| `Program` | Programme type: `Permanent`, `Exclusive`, `Radical` |
+| `Out of Premises` | `Yes` if visit is outside POS premises |
+| `Brand Ambassador` | `SPC_<Lastname> <Firstname>`. Null for Radical (data quality issue). |
+| `Date` / `Start` / `End` / `Duration` | Visit timing |
+| `CDB Code` / `POS Name` | POS identifier and name |
+| `Priority` | Strategic / Prime / BaseLine / Developing |
+| `Type` | POS category (kiosk, convenience, minimarket, vape store…) |
+| `Address` / `City` / `County` / `Department` / `District` / `Territory` | Location hierarchy |
+| `Chain` / `W/H` / `Contractor` | Commercial relationships |
+| `Action` | Outcome: Executed / Cancelled / Change Visit / Double Visit |
+| `Reason` | Reason when not executed |
+| `Comments` / `Comments Meeting` | Free-text notes |
+
+### Other sheets
+
+| Sheet | Purpose |
+|---|---|
+| `Personnel` | Master list of JTI promoters (Permanent + Exclusive, ~46 records) |
+| `CDB List` | Master POS registry (~866 records) |
+| `Priority` | POS analysis with recommended visit Day/Time slots and volume metrics |
+| `schedules` | Output template for downstream system (`promoterCode`, `posCode`, `startAt`, `endAt`) |
+| `Strategic PoS_Monthly Plan` | Monthly grid view of strategic POS |
+| `Detailed Pan Provences` | Province-level planning breakdown |
+| `DropDownLists` | Reference values for Action, Reason, Trade Offer, PoS Gift fields |
+
+---
+
+## Open Questions
+
+Early-stage PoC — these require stakeholder clarification before building scheduling logic.
+
+| # | Area | Question |
+|---|---|---|
+| 2 | Programme types | **Exclusive vs Permanent** — is Exclusive a dedicated third-party contractor (not direct payroll) while Permanent is a full-time JTI hire? |
+| 3 | Promoter data | **`Base` column for Radical** — null because data isn't tracked, or because Radical promoters are always local to the POS area? |
+| 4 | Output | **`schedules` sheet** — confirmed as downstream system output format? What system consumes it? |
+| 5 | AI input | **`Priority` sheet Day/Time columns** — are these manually determined optimal slots that the AI should learn to generate? Ground truth for validation? |
+| 6 | POS data | **`W/H` column** — does warehouse/distributor affect scheduling (e.g. promoter–distributor ties) or is it logistics-only? |
+| 7 | POS data | **`Contractor` column** (`JTI`/`Competition`/`Owner`) — does this affect which POS is scheduled, which programme type is used, or which promoter is assigned? |

@@ -23,6 +23,14 @@ be-makemigrations:  ## Create new Django migrations
 be-createsuperuser:  ## Create a Django admin superuser
 	cd backend && ../$(PYTHON) manage.py createsuperuser
 
+.PHONY: be-loaddata
+be-loaddata:  ## Load initial fixture data (promoters, POS, test admin)
+	cd backend && ../$(PYTHON) manage.py loaddata scheduling/fixtures/initial_data.json
+
+.PHONY: be-install
+be-install:  ## Install backend dependencies via uv
+	$(UV) pip install django djangorestframework django-cors-headers djangorestframework-simplejwt flake8 isort black openpyxl
+
 .PHONY: be-lint
 be-lint:  ## Run black + isort + flake8
 	cd backend && ../$(PYTHON) -m black .

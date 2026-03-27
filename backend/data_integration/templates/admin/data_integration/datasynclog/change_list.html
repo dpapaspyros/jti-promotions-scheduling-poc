@@ -1,0 +1,38 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools-items %}
+  <li>
+    <form method="post" style="display:inline">
+      {% csrf_token %}
+      <input type="hidden" name="pull_type" value="Promoters">
+      <button type="submit"
+              class="button"
+              style="background:#417690;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin-right:4px">
+        ↓ Pull Promoters
+      </button>
+    </form>
+  </li>
+  <li>
+    <form method="post" style="display:inline">
+      {% csrf_token %}
+      <input type="hidden" name="pull_type" value="POS">
+      <button type="submit"
+              class="button"
+              style="background:#417690;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;margin-right:4px">
+        ↓ Pull Points of Sale
+      </button>
+    </form>
+  </li>
+  <li>
+    <form method="post" style="display:inline">
+      {% csrf_token %}
+      <input type="hidden" name="pull_type" value="Metrics">
+      <button type="submit"
+              class="button"
+              style="background:#417690;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer">
+        ↓ Pull Metrics
+      </button>
+    </form>
+  </li>
+  {{ block.super }}
+{% endblock %}

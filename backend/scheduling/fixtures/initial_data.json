@@ -1,0 +1,1876 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$1200000$G8SM0vq387wJMkuarKuvmH$H4IOXSEowJf3/xHQU/FcfF+Rn4EY7CTmLzYJMRQT0vs=",
+      "email": "admin@jti-poc.local",
+      "first_name": "Scheduling",
+      "last_name": "Admin",
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "date_joined": "2026-01-01T00:00:00Z",
+      "last_login": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 1,
+    "fields": {
+      "code": null,
+      "username": "SPC_Athens Exclusive",
+      "first_name": "Exclusive",
+      "last_name": "Athens",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 2,
+    "fields": {
+      "code": "GR_000072",
+      "username": "SPC_Avgeros Filippos",
+      "first_name": "Filippos",
+      "last_name": "Avgeros",
+      "programme_type": "Permanent",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 3,
+    "fields": {
+      "code": "GR_000060",
+      "username": "SPC_Bouras Aggelos",
+      "first_name": "Aggelos",
+      "last_name": "Bouras",
+      "programme_type": "Permanent",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 4,
+    "fields": {
+      "code": "GR_000077",
+      "username": "SPC_Fotelli Maria",
+      "first_name": "Maria",
+      "last_name": "Fotelli",
+      "programme_type": "Permanent",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 5,
+    "fields": {
+      "code": "GR_000216",
+      "username": "SPC_Galitsianou Maria",
+      "first_name": "Maria",
+      "last_name": "Galitsianou",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 6,
+    "fields": {
+      "code": "GR_000073",
+      "username": "SPC_Gasparatos Zisis",
+      "first_name": "Zisis",
+      "last_name": "Gasparatos",
+      "programme_type": "Permanent",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 7,
+    "fields": {
+      "code": "GR_000284",
+      "username": "SPC_Gasteratos Aggelos",
+      "first_name": "Aggelos",
+      "last_name": "Gasteratos",
+      "programme_type": "Permanent",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 8,
+    "fields": {
+      "code": "GR_000221",
+      "username": "SPC_Georgiadis Pavlos",
+      "first_name": "Pavlos",
+      "last_name": "Georgiadis",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 9,
+    "fields": {
+      "code": "GR_000292",
+      "username": "SPC_Kapsali Fani",
+      "first_name": "Fani",
+      "last_name": "Kapsali",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 10,
+    "fields": {
+      "code": "GR_000291",
+      "username": "SPC_Karafopoulos Xristos",
+      "first_name": "Xristos",
+      "last_name": "Karafopoulos",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 11,
+    "fields": {
+      "code": "GR_000064",
+      "username": "SPC_Karantzouni Magda",
+      "first_name": "Magda",
+      "last_name": "Karantzouni",
+      "programme_type": "Permanent",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 12,
+    "fields": {
+      "code": "GR_000065",
+      "username": "SPC_Karapanos Giorgos",
+      "first_name": "Giorgos",
+      "last_name": "Karapanos",
+      "programme_type": "Permanent",
+      "base_city": "Patra",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 13,
+    "fields": {
+      "code": "GR_000066",
+      "username": "SPC_Kazamia Ioanna",
+      "first_name": "Ioanna",
+      "last_name": "Kazamia",
+      "programme_type": "Permanent",
+      "base_city": "Irakleio",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 14,
+    "fields": {
+      "code": "GR_000074",
+      "username": "SPC_Lamdas Apostolos",
+      "first_name": "Apostolos",
+      "last_name": "Lamdas",
+      "programme_type": "Permanent",
+      "base_city": "Kavala",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 15,
+    "fields": {
+      "code": "GR_000209",
+      "username": "SPC_Lantzounis Fotis",
+      "first_name": "Fotis",
+      "last_name": "Lantzounis",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 16,
+    "fields": {
+      "code": "GR_000289",
+      "username": "SPC_Lazaridou Androniki",
+      "first_name": "Androniki",
+      "last_name": "Lazaridou",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 17,
+    "fields": {
+      "code": "GR_000076",
+      "username": "SPC_Malama Melpomeni",
+      "first_name": "Melpomeni",
+      "last_name": "Malama",
+      "programme_type": "Permanent",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 18,
+    "fields": {
+      "code": "GR_000280",
+      "username": "SPC_Maltzaris Aggelos",
+      "first_name": "Aggelos",
+      "last_name": "Maltzaris",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 19,
+    "fields": {
+      "code": "GR_000215",
+      "username": "SPC_Mamatsiou Eri",
+      "first_name": "Eri",
+      "last_name": "Mamatsiou",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 20,
+    "fields": {
+      "code": "GR_000144",
+      "username": "SPC_Manola Olga",
+      "first_name": "Olga",
+      "last_name": "Manola",
+      "programme_type": "Permanent",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 21,
+    "fields": {
+      "code": "GR_000223",
+      "username": "SPC_Mekaka Aggeliki",
+      "first_name": "Aggeliki",
+      "last_name": "Mekaka",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 22,
+    "fields": {
+      "code": "GR_000286",
+      "username": "SPC_Mesdaniti  Aggeliki",
+      "first_name": "Aggeliki",
+      "last_name": "Mesdaniti",
+      "programme_type": "Permanent",
+      "base_city": "Alexandroupoli",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 23,
+    "fields": {
+      "code": "GR_000290",
+      "username": "SPC_Mesimerlis  Zisis",
+      "first_name": "Zisis",
+      "last_name": "Mesimerlis",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 24,
+    "fields": {
+      "code": "GR_000282",
+      "username": "SPC_Mpilias Xaris",
+      "first_name": "Xaris",
+      "last_name": "Mpilias",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 25,
+    "fields": {
+      "code": "GR_000210",
+      "username": "SPC_Mpirmpiropoulou Anna",
+      "first_name": "Anna",
+      "last_name": "Mpirmpiropoulou",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 26,
+    "fields": {
+      "code": "GR_000125",
+      "username": "SPC_Mpouli Eva",
+      "first_name": "Eva",
+      "last_name": "Mpouli",
+      "programme_type": "Permanent",
+      "base_city": "Kozani",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 27,
+    "fields": {
+      "code": "GR_000075",
+      "username": "SPC_Mpriazna Dimitra",
+      "first_name": "Dimitra",
+      "last_name": "Mpriazna",
+      "programme_type": "Permanent",
+      "base_city": "Volos",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 28,
+    "fields": {
+      "code": "GR_000283",
+      "username": "SPC_Mylonopoulou Zeta",
+      "first_name": "Zeta",
+      "last_name": "Mylonopoulou",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 29,
+    "fields": {
+      "code": "GR_000226",
+      "username": "SPC_Papaioannou Konstantina",
+      "first_name": "Konstantina",
+      "last_name": "Papaioannou",
+      "programme_type": "Permanent",
+      "base_city": "Larisa",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 30,
+    "fields": {
+      "code": "GR_000212",
+      "username": "SPC_Pepeto Tzeni",
+      "first_name": "Tzeni",
+      "last_name": "Pepeto",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 31,
+    "fields": {
+      "code": "GR_000287",
+      "username": "SPC_Polimerou  Orestis",
+      "first_name": "Orestis",
+      "last_name": "Polimerou",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 32,
+    "fields": {
+      "code": "GR_000219",
+      "username": "SPC_Pouliakis Christos",
+      "first_name": "Christos",
+      "last_name": "Pouliakis",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 33,
+    "fields": {
+      "code": "GR_000288",
+      "username": "SPC_Pourika Emmanouela",
+      "first_name": "Emmanouela",
+      "last_name": "Pourika",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 34,
+    "fields": {
+      "code": "GR_000068",
+      "username": "SPC_Psarra Eirini",
+      "first_name": "Eirini",
+      "last_name": "Psarra",
+      "programme_type": "Permanent",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 35,
+    "fields": {
+      "code": "GR_000198",
+      "username": "SPC_Souras Stathis",
+      "first_name": "Stathis",
+      "last_name": "Souras",
+      "programme_type": "Permanent",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 36,
+    "fields": {
+      "code": "GR_000218",
+      "username": "SPC_Staxtiari Aggeliki",
+      "first_name": "Aggeliki",
+      "last_name": "Staxtiari",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 37,
+    "fields": {
+      "code": "GR_000214",
+      "username": "SPC_Thanailaki Alexandra",
+      "first_name": "Alexandra",
+      "last_name": "Thanailaki",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 38,
+    "fields": {
+      "code": "GR_000222",
+      "username": "SPC_Tsakiri Eleana",
+      "first_name": "Eleana",
+      "last_name": "Tsakiri",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 39,
+    "fields": {
+      "code": "GR_000217",
+      "username": "SPC_Tzika Zoi",
+      "first_name": "Zoi",
+      "last_name": "Tzika",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 40,
+    "fields": {
+      "code": "GR_000224",
+      "username": "SPC_Valasi Despoina",
+      "first_name": "Despoina",
+      "last_name": "Valasi",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 41,
+    "fields": {
+      "code": "GR_000145",
+      "username": "SPC_Vogiatzi Giota",
+      "first_name": "Giota",
+      "last_name": "Vogiatzi",
+      "programme_type": "Permanent",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 42,
+    "fields": {
+      "code": "GR_000225",
+      "username": "SPC_Voutsa Eleni",
+      "first_name": "Eleni",
+      "last_name": "Voutsa",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 43,
+    "fields": {
+      "code": "GR_000070",
+      "username": "SPC_Xristopoulos Orestis",
+      "first_name": "Orestis",
+      "last_name": "Xristopoulos",
+      "programme_type": "Permanent",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 44,
+    "fields": {
+      "code": "GR_000220",
+      "username": "SPC_Yfouli Vasiliki",
+      "first_name": "Vasiliki",
+      "last_name": "Yfouli",
+      "programme_type": "Exclusive",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 45,
+    "fields": {
+      "code": "GR_000202",
+      "username": "SPC_Zaragka Kallia",
+      "first_name": "Kallia",
+      "last_name": "Zaragka",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 46,
+    "fields": {
+      "code": "GR_000203",
+      "username": "SPC_Zormpa Dimitra",
+      "first_name": "Dimitra",
+      "last_name": "Zormpa",
+      "programme_type": "Exclusive",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 47,
+    "fields": {
+      "code": "RAD_001",
+      "username": "SPC_Nikolaou Kostas",
+      "first_name": "Kostas",
+      "last_name": "Nikolaou",
+      "programme_type": "Radical",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 48,
+    "fields": {
+      "code": "RAD_002",
+      "username": "SPC_Petridis Nikos",
+      "first_name": "Nikos",
+      "last_name": "Petridis",
+      "programme_type": "Radical",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 49,
+    "fields": {
+      "code": "RAD_003",
+      "username": "SPC_Alexiou Sofia",
+      "first_name": "Sofia",
+      "last_name": "Alexiou",
+      "programme_type": "Radical",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 50,
+    "fields": {
+      "code": "RAD_004",
+      "username": "SPC_Papadaki Elena",
+      "first_name": "Elena",
+      "last_name": "Papadaki",
+      "programme_type": "Radical",
+      "base_city": "Irakleio",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 51,
+    "fields": {
+      "code": "RAD_005",
+      "username": "SPC_Georgiou Michail",
+      "first_name": "Michail",
+      "last_name": "Georgiou",
+      "programme_type": "Radical",
+      "base_city": "Patra",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 52,
+    "fields": {
+      "code": "RAD_006",
+      "username": "SPC_Stavridis Tasos",
+      "first_name": "Tasos",
+      "last_name": "Stavridis",
+      "programme_type": "Radical",
+      "base_city": "Thessaloniki",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 53,
+    "fields": {
+      "code": "RAD_007",
+      "username": "SPC_Dimitriou Vaso",
+      "first_name": "Vaso",
+      "last_name": "Dimitriou",
+      "programme_type": "Radical",
+      "base_city": "Athens",
+      "team": "SOUTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.promoter",
+    "pk": 54,
+    "fields": {
+      "code": "RAD_008",
+      "username": "SPC_Papadopoulos Aris",
+      "first_name": "Aris",
+      "last_name": "Papadopoulos",
+      "programme_type": "Radical",
+      "base_city": "Volos",
+      "team": "NORTH TEAM",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 1,
+    "fields": {
+      "cdb_code": "60-060859",
+      "name": "ΤΡΟΥΜΟΥΣΗΣ ΧΡΗΣΤΟΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΑΡΙΣΤΩΝΟΣ 4",
+      "city": "ΚΩΣ",
+      "county": "ΔΩΔΕΚΑΝΗΣΑ",
+      "department": "ΝΗΣΙΑ ΑΙΓΑΙΟΥ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_09. ΛΑΖΟΥ",
+      "warehouse": "ΤΟΜΑΡΑΣ ΘΕΟΔΩΡΟΣ Κ ΣΙΑ ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2242025433",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 2,
+    "fields": {
+      "cdb_code": "60-088834",
+      "name": "24SHOPEN ΕΥΡΥΔΑΜΑΝΤΟΣ",
+      "pos_type": "CONVENIENCE",
+      "priority": "Strategic",
+      "address": "ΕΥΡΥΔΑΜΑΝΤΟΣ 28",
+      "city": "ΝΕΟΣ ΚΟΣΜΟΣ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_03. ΜΠΑΛΑΜΑΤΣΗ",
+      "warehouse": "ΚΑΠΝΟΣ Α.Ε",
+      "chain": "24 SHOPEN",
+      "contractor": "JTI",
+      "telephone": "2168001930",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 3,
+    "fields": {
+      "cdb_code": "60-084862",
+      "name": "24SHOPEN ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ",
+      "pos_type": "CONVENIENCE",
+      "priority": "BaseLine",
+      "address": "ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ 131",
+      "city": "ΑΘΗΝΑ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "EAST (NF)",
+      "territory": "E_07. ΠΑΝΑΓΟΠΟΥΛΟΥ",
+      "warehouse": "ΔΗΜΗΤΡΙΟΣ ΑΛΕΞΙΟΥ A.E",
+      "chain": "24 SHOPEN",
+      "contractor": "JTI",
+      "telephone": "2168090037",
+      "mobile": "6948085644",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 4,
+    "fields": {
+      "cdb_code": "60-082843",
+      "name": "ΓΚΟΛΟΣΗΣ Κ. ΗΛΙΑΣ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "",
+      "address": "ΑΓΙΑΣ ΒΑΡΒΑΡΑΣ 35",
+      "city": "ΠΑΛΑΙΟ ΦΑΛΗΡΟ",
+      "county": "Π.Ε. ΝΟΤΙΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "NA",
+      "territory": "CENTRAL (DKR)",
+      "warehouse": "C_03. ΜΠΑΛΑΜΑΤΣΗ",
+      "chain": "",
+      "contractor": "JTI",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 5,
+    "fields": {
+      "cdb_code": "60-062948",
+      "name": "ΠΕΡΙΠΤΕΡΟ Λ. ΠΑΠΑΓΟΥ 87 Ε.Ε",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "",
+      "address": "Λ. ΣΤΡΑΤΑΡΧΟΥ ΠΑΠΑΓΟΥ 87",
+      "city": "ΖΩΓΡΑΦΟΣ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "NA",
+      "territory": "EAST (NF)",
+      "warehouse": "E_07. ΠΑΝΑΓΟΠΟΥΛΟΥ",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 6,
+    "fields": {
+      "cdb_code": "60-053138",
+      "name": "ΠΕΡΙΠΤΕΡΟ ΑΡΙΣΤΟΜΕΝΟΥΣ ΙΚΕ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "",
+      "address": "ΑΡΙΣΤΟΜΕΝΟΥΣ 55",
+      "city": "ΚΑΛΑΜΑΤΑ",
+      "county": "Π.Ε. ΜΕΣΣΗΝΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "NA",
+      "territory": "WEST (STK)",
+      "warehouse": "W_08. ΚΑΛΛΙΝΤΕΡΗ",
+      "chain": "Β.ΠΟΛΥΧΡΟΝΟΠΟΥΛΟΥ & ΙΚΕ",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 7,
+    "fields": {
+      "cdb_code": "60-100176",
+      "name": "SOTA ANI ΥΠΟΚ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "",
+      "address": "ΑΡΧΙΔΑΜΟΥ 80",
+      "city": "ΣΠΑΡΤΗ",
+      "county": "Π.Ε. ΛΑΚΩΝΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "NA",
+      "territory": "WEST (STK)",
+      "warehouse": "W_08. ΚΑΛΛΙΝΤΕΡΗ",
+      "chain": "",
+      "contractor": "2723108304",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 8,
+    "fields": {
+      "cdb_code": "60-060078",
+      "name": "ΜΑΡΝΕΛΛΟΣ Γ. & ΣΙΑ Ε.Ε.",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "",
+      "address": "ΑΝΑΓΝΩΣΤΟΥ ΓΟΓΟΝΗ 80",
+      "city": "ΧΑΝΙΑ",
+      "county": "Π.Ε. ΧΑΝΙΩΝ",
+      "department": "ΚΡΗΤΗ",
+      "district": "NA",
+      "territory": "EAST (NF)",
+      "warehouse": "E_09_ΖΟΥΓΡΑ",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 9,
+    "fields": {
+      "cdb_code": "60-083397",
+      "name": "ΚΟΜΝΗΝΑΡΑΣ Γ. ΝΕΚΤΑΡΙΟΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "",
+      "address": "ΓΑΜΒΕΤΑ 92",
+      "city": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "county": "Π.Ε. ΘΕΣΣΑΛΟΝΙΚΗΣ",
+      "department": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "district": "NA",
+      "territory": "NORTH (TKO)",
+      "warehouse": "N_T03. ΒΟΛΟΓΙΑΝΝΗ",
+      "chain": "",
+      "contractor": "2310819000",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 10,
+    "fields": {
+      "cdb_code": "60-100962",
+      "name": "COFFEE KAMARA E.E.",
+      "pos_type": "COFFEE ISLAND",
+      "priority": "",
+      "address": "ΕΓΝΑΤΙΑΣ 117 ΚΑΙ ΙΑΣΩΝΙΔΟΥ",
+      "city": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "county": "Π.Ε. ΘΕΣΣΑΛΟΝΙΚΗΣ",
+      "department": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "district": "",
+      "territory": "",
+      "warehouse": "",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 11,
+    "fields": {
+      "cdb_code": "60-089532",
+      "name": "ΓΡΗΓΟΡΙΑΔΗ Σ. ΚΑΙ Π. ΑΦΟΙ ΟΕ",
+      "pos_type": "CONVENIENCE",
+      "priority": "",
+      "address": "ΚΑΡΑΟΛΗ ΚΑΙ ΔΗΜΗΤΡΙΟΥ  33",
+      "city": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "county": "Π.Ε. ΘΕΣΣΑΛΟΝΙΚΗΣ",
+      "department": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "district": "4ALL (I.S.N.   A.E.)",
+      "territory": "NORTH (TKO)",
+      "warehouse": "N_T05. ΚΕΦΑΛΙΔΗ",
+      "chain": "",
+      "contractor": "2310542415",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 12,
+    "fields": {
+      "cdb_code": "60-084379",
+      "name": "ΚΡΑΤΟΥΝΑ ΕΛΕΝΗ & ΣΙΑ Ο.Ε",
+      "pos_type": "CONVENIENCE",
+      "priority": "",
+      "address": "ΜΑΙΑΝΔΡΟΥ 83",
+      "city": "ΕΥΟΣΜΟΣ",
+      "county": "Π.Ε. ΘΕΣΣΑΛΟΝΙΚΗΣ",
+      "department": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "district": "4ALL (I.S.N.   A.E.)",
+      "territory": "NORTH (TKO)",
+      "warehouse": "N_T06. ΚΟΝΤΟΓΟΥΛΑ",
+      "chain": "",
+      "contractor": "2316007435",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 13,
+    "fields": {
+      "cdb_code": "60-060276",
+      "name": "ΒΛΑΧΟΥ ΓΙΑΝΝΟΥΛΑ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "",
+      "address": "ΠΛΑΤΕΙΑ ΧΑΤΖΗ-ΑΜΠΕΛΟΚΗΠΟΙ",
+      "city": "ΙΩΑΝΝΙΝΑ",
+      "county": "Π.Ε. ΙΩΑΝΝΙΝΩΝ",
+      "department": "ΗΠΕΙΡΟΣ",
+      "district": "NA",
+      "territory": "CENTRAL (DKR)",
+      "warehouse": "C_08. ΚΙΤΣΙΟΥ",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 14,
+    "fields": {
+      "cdb_code": "60-099689",
+      "name": "ENA ΜΑΡΚΕΤ ΕΕ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "",
+      "address": "Λ. ΔΩΔΩΝΗΣ 81",
+      "city": "ΙΩΑΝΝΙΝΑ",
+      "county": "Π.Ε. ΙΩΑΝΝΙΝΩΝ",
+      "department": "ΗΠΕΙΡΟΣ",
+      "district": "",
+      "territory": "CENTRAL (DKR)",
+      "warehouse": "C_08. ΚΙΤΣΙΟΥ",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 15,
+    "fields": {
+      "cdb_code": "60-079425",
+      "name": "ΓΚΟΝΗΣ ΣΤΑΥΡΟΣ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "",
+      "address": "7 ΧΛΜ ΕΘΝΙΚΗΣ ΙΩΑΝΝΙΝΩΝ-ΑΘΗΝΩΝ",
+      "city": "ΙΩΑΝΝΙΝΑ",
+      "county": "Π.Ε. ΙΩΑΝΝΙΝΩΝ",
+      "department": "ΗΠΕΙΡΟΣ",
+      "district": "NA",
+      "territory": "CENTRAL (DKR)",
+      "warehouse": "C_08. ΚΙΤΣΙΟΥ",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 16,
+    "fields": {
+      "cdb_code": "60-098893",
+      "name": "ΒΑΣΙΟΣ ΣΤΕΦΑΝΟΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "",
+      "address": "ΣΑΒΒΑ ΝΙΚΟΛΑΤΟΥ 53",
+      "city": "ΙΩΑΝΝΙΝΑ-ΣΕΙΣΜΟΠΛΗΚΤ",
+      "county": "Π.Ε. ΙΩΑΝΝΙΝΩΝ",
+      "department": "ΗΠΕΙΡΟΣ",
+      "district": "NA",
+      "territory": "CENTRAL (DKR)",
+      "warehouse": "C_08. ΚΙΤΣΙΟΥ",
+      "chain": "",
+      "contractor": "",
+      "telephone": "",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 17,
+    "fields": {
+      "cdb_code": "60-095155",
+      "name": "ΑΜΟΙΡΙΔΟΥ ΑΝΝΑ ΑΡΑΡΑΤ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "BaseLine",
+      "address": "ΠΟΙΜΕΝΙΔΗ 6",
+      "city": "ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ",
+      "county": "Π.Ε. ΕΒΡΟΥ",
+      "department": "ΘΡΑΚΗ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T07. ΛΑΠΑΤΑ",
+      "warehouse": "ΖΑΧΑΡΙΑΔΗΣ ΑΦΟΙ Ο.Ε  (ΥΠΟΚ/ΜΑ)",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2551034663",
+      "mobile": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 18,
+    "fields": {
+      "cdb_code": "60-080626",
+      "name": "ΚΥΡΙΑΚΟΥ ΧΡΥΣΟΒΑΛΑΝΤΗΣ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΚΑΡΑΟΛΗ ΔΗΜΗΤΡΙΟΥ & ΑΓΓΕΛΑΚΟΠΟ",
+      "city": "ΛΑΡΙΣΑ",
+      "county": "Π.Ε. ΛΑΡΙΣΑΣ",
+      "department": "ΘΕΣΣΑΛΙΑ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T09. ΦΥΛΑΚΤΟΠΟΥΛΟΥ",
+      "warehouse": "Σ. ΟΙΚΟΝΟΜΟΥ & ΣΙΑ ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2410625320",
+      "mobile": "6957091026",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 19,
+    "fields": {
+      "cdb_code": "60-086105",
+      "name": "ΜΠΙΡΜΠΙΛΗΣ ΜΕΝΕΛΑΟΣ ΥΠΟΚ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΕΛΕΥΘΕΡΙΟΥ ΒΕΝΙΖΕΛΟΥ 184",
+      "city": "ΑΡΚΑΛΟΧΩΡΙ",
+      "county": "Π.Ε. ΗΡΑΚΛΕΙΟΥ",
+      "department": "ΚΡΗΤΗ",
+      "district": "EAST (NF)",
+      "territory": "E_08_ΜΑΡΔΑΒΑΝΗ",
+      "warehouse": "Γ. ΣΤΕΦΑΝΟΓΛΟΥ ΚΑΙ ΣΙΑ ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "6936909515",
+      "mobile": "6936909515",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 20,
+    "fields": {
+      "cdb_code": "60-085016",
+      "name": "ΧΑΣΕΛΙΔΗΣ Ν.ΧΑΡΑΛΑΜΠΟΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΚΟΙΜΗΣΕΩΣ ΘΕΟΤΟΚΟΥ 13",
+      "city": "ΓΑΣΤΟΥΝΗ",
+      "county": "Π.Ε. ΗΛΕΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΣΠΕΝΤΖΑΡΗ Φ.- ΓΕΩΡΓΙΟΥ Γ.ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2623400276",
+      "mobile": "6984572784",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 21,
+    "fields": {
+      "cdb_code": "60-086857",
+      "name": "ΚΑΤΣΑΜΠΟΥΛΑ ΕΛΕΝΗ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΑΓΙΟΥ ΓΕΩΡΓΙΟΥ 22",
+      "city": "ΠΥΡΓΟΣ",
+      "county": "Π.Ε. ΗΛΕΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_07. ΚΑΡΑΙΣΚΟΥ",
+      "warehouse": "Μ.Κ. ΠΕΤΡΟΓΙΑΝΝΗ & ΣΙΑ Ο.Ε.",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2621401573",
+      "mobile": "6931116421",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 22,
+    "fields": {
+      "cdb_code": "60-056489",
+      "name": "ΑΝΔΡΕΑΔΟΥ ΜΥΡΟΦΟΡΑ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΠΛΑΤΕΙΑ ΕΛΕΥΘΕΡΙΑΣ 6",
+      "city": "ΚΑΤΕΡΙΝΗ",
+      "county": "Π.Ε. ΠΙΕΡΙΑΣ",
+      "department": "ΚΕΝΤΡΙΚΗ ΜΑΚΕΔΟΝΙΑ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T01. ΜΑΛΑΜΑ",
+      "warehouse": "ΙΩΑΝΝΙΔΗΣ ΝΙΚΟΛΑΟΣ M.I.K.E",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "6999582011",
+      "mobile": "6945971115",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 23,
+    "fields": {
+      "cdb_code": "60-060267",
+      "name": "ΚΑΡΑΓΙΩΡΓΑ ΠΗΝΕΛΟΠΗ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Prime",
+      "address": "ΝΕΟ ΠΑΤΡΩΝ ΑΘΗΝΩΝ 14",
+      "city": "ΠΑΤΡΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_07. ΚΑΡΑΙΣΚΟΥ",
+      "warehouse": "ΓΙΑΝΝΑΚΟΠΟΥΛΟΣ ΑΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2610431264",
+      "mobile": "6979705713",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 24,
+    "fields": {
+      "cdb_code": "60-072751",
+      "name": "ASTRIT HAR.MUSKAJ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Developing",
+      "address": "ΠΛΑΤΕΙΑ ΦΡΕΙΔΕΡΙΚΗΣ",
+      "city": "ΜΕΓΑΡΑ",
+      "county": "Π.Ε. ΔΥΤΙΚΗΣ ΑΤΤΙΚΗΣ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "WEST (STK)",
+      "territory": "W_01. ΠΑΛΛΗ",
+      "warehouse": "ΣΙΑΦΑΚΑΣ Α.Ε",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2296026716",
+      "mobile": "6979349077",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 25,
+    "fields": {
+      "cdb_code": "60-100468",
+      "name": "IQ STORES ΣΤΡΑΤΟΥ Ε.Ε.",
+      "pos_type": "CONVENIENCE",
+      "priority": "Strategic",
+      "address": "ΛΕΩΦΟΡΟΣ ΣΤΡΑΤΟΥ 87",
+      "city": "ΠΟΛΙΧΝΗ",
+      "county": "Π.Ε. ΘΕΣΣΑΛΟΝΙΚΗΣ",
+      "department": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T05. ΚΕΦΑΛΙΔΗ",
+      "warehouse": "ΦΩΚΙΔΗΣ ΑΕΒΕ",
+      "chain": "IQ STORES",
+      "contractor": "JTI",
+      "telephone": "2317009701",
+      "mobile": "6976162785",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 26,
+    "fields": {
+      "cdb_code": "60-060799",
+      "name": "ΣΤΕΡΓΙΟΥ ΧΡΗΣΤΟΣ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΑΣΚΛΗΠΙΟΥ 90",
+      "city": "ΤΡΙΚΑΛΑ",
+      "county": "Π.Ε. ΤΡΙΚΑΛΩΝ",
+      "department": "ΘΕΣΣΑΛΙΑ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T04. ΠΑΠΑΔΟΠΟΥΛΟΥ",
+      "warehouse": "ΑΓΓΕΛΑΚΗΣ Α ΕΥΑΓΓΕΛΟΣ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2431302446",
+      "mobile": "6988979257",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 27,
+    "fields": {
+      "cdb_code": "60-056833",
+      "name": "ΜΠΟΥΡΑΖΑΣ ΚΩΝΣΤΑΝΤΙΝΟΣ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΙΩΛΚΟΥ & ΓΑΖΗ",
+      "city": "ΒΟΛΟΣ",
+      "county": "Π.Ε. ΜΑΓΝΗΣΙΑΣ",
+      "department": "ΘΕΣΣΑΛΙΑ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_06. ΠΑΣΧΑΛΟΥΔΗ",
+      "warehouse": "ΚΡΙΑΡΑ Μ.ΣΑΛΤΑΓΙΑΝΝΗΣ Χ&ΣΙΑ ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2421020511",
+      "mobile": "6977975060",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 28,
+    "fields": {
+      "cdb_code": "60-087969",
+      "name": "ΣΕΡΑΝΗΣ ΜΑΡΙΟΣ (ΥΠΟΚ.)",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΤΡΙΚΑΛΩΝ 277",
+      "city": "ΚΑΡΔΙΤΣΑ",
+      "county": "Π.Ε. ΚΑΡΔΙΤΣΑΣ",
+      "department": "ΘΕΣΣΑΛΙΑ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T09. ΦΥΛΑΚΤΟΠΟΥΛΟΥ",
+      "warehouse": "ΒΥΘΟΠΟΥΛΟΣ ΧΡ. ΙΚΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2441022982",
+      "mobile": "6986666293",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 29,
+    "fields": {
+      "cdb_code": "60-093947",
+      "name": "NIKA VJOLLCA",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΗΡΑΚΛΕΟΥΣ & ΛΟΞΗΣ ΦΑΛΑΓΓΟΣ",
+      "city": "ΘΗΒΑ",
+      "county": "Π.Ε. ΒΟΙΩΤΙΑΣ",
+      "department": "ΣΤΕΡΕΑ ΕΛΛΑΔΑ",
+      "district": "EAST (NF)",
+      "territory": "E_04. ΜΑΛΛΙΟΥ",
+      "warehouse": "ΣΤΑΜΑΤΗΣ Χ. Σ. & ΣΙΑ ΟΕ 3",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2262029354",
+      "mobile": "6986841843",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 30,
+    "fields": {
+      "cdb_code": "60-060251",
+      "name": "BALLIU K. ALTIN",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Prime",
+      "address": "ΚΟΤΖΙΑ 61(ΠΛ. 25ΗΣ ΜΑΡΤΙΟΥ)",
+      "city": "ΗΛΙΟΥΠΟΛΗ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_04. ΛΟΥΚΑ",
+      "warehouse": "ΔΗΜΗΤΡΙΟΣ ΑΛΕΞΙΟΥ A.E",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2109959357",
+      "mobile": "6972534655",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 31,
+    "fields": {
+      "cdb_code": "60-074337",
+      "name": "ΣΤΑΥΡΙΑΝΟΥ ΣΩΤΗΡΙΑ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΔΗΜΟΚΡΑΤΙΑΣ 154",
+      "city": "ΠΑΤΡΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΓΙΑΝΝΑΚΟΠΟΥΛΟΣ ΑΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2610526157",
+      "mobile": "6940452727",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 32,
+    "fields": {
+      "cdb_code": "60-065538",
+      "name": "ΚΟΡΠΕΤΙΝΟΣ ΔΙΟΝΥΣΙΟΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΝΙΚΟΛΑΟΥ ΒΟΥΡΤΣΗ 62",
+      "city": "ΒΑΡΘΟΛΟΜΙΟ",
+      "county": "Π.Ε. ΗΛΕΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΣΠΕΝΤΖΑΡΗ Φ.- ΓΕΩΡΓΙΟΥ Γ.ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2623042747",
+      "mobile": "6982259104",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 33,
+    "fields": {
+      "cdb_code": "60-056634",
+      "name": "ΑΡΑΜΠΑΤΖΗ ΑΝΑΣΤΑΣΙΑ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "BaseLine",
+      "address": "ΛΕΩΦΟΡΟΣ ΔΗΜΟΚΡΑΤΙΑΣ 243",
+      "city": "ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ",
+      "county": "Π.Ε. ΕΒΡΟΥ",
+      "department": "ΘΡΑΚΗ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T07. ΛΑΠΑΤΑ",
+      "warehouse": "ΖΑΧΑΡΙΑΔΗΣ ΑΦΟΙ Ο.Ε  (ΥΠΟΚ/ΜΑ)",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2551029386",
+      "mobile": "6932318240",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 34,
+    "fields": {
+      "cdb_code": "60-098954",
+      "name": "DANA K ALBANA",
+      "pos_type": "CONVENIENCE",
+      "priority": "Strategic",
+      "address": "ΦΑΕΘΟΝΤΟΣ 18",
+      "city": "ΚΥΨΕΛΗ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "EAST (NF)",
+      "territory": "E_05. ΨΥΧΑΛΟΠΟΥΛΟΥ",
+      "warehouse": "ΧΑΤΖΗΒΑΣΙΛΟΓΛΟΥ A.E.",
+      "chain": "NA",
+      "contractor": "Competition",
+      "telephone": "2108678080",
+      "mobile": "6996378782",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 35,
+    "fields": {
+      "cdb_code": "60-055666",
+      "name": "EASY BUY Ο.Ε",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Prime",
+      "address": "ΛΕΟΦΩΡΟΣ ΜΑΡΑΘΩΝΟΣ 54",
+      "city": "ΑΝΟΙΞΗ",
+      "county": "Π.Ε. ΑΝΑΤΟΛΙΚΗΣ ΑΤΤΙΚΗΣ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "EAST (NF)",
+      "territory": "E_01. ΤΣΟΥΚΑΛΑ",
+      "warehouse": "ΚΑΠΝΟΠΟΛΙΣ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2106215668",
+      "mobile": "6982759221",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 36,
+    "fields": {
+      "cdb_code": "60-074374",
+      "name": "ΑΧΥΡΚΙΔΟΥ Μ-ΜΠΟΤΗ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "BaseLine",
+      "address": "ΚΟΥΤΑΒΟΥ 7",
+      "city": "ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ",
+      "county": "Π.Ε. ΕΒΡΟΥ",
+      "department": "ΘΡΑΚΗ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T07. ΛΑΠΑΤΑ",
+      "warehouse": "ΖΑΧΑΡΙΑΔΗΣ ΑΦΟΙ Ο.Ε  (ΥΠΟΚ/ΜΑ)",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2551303073",
+      "mobile": "6973418516",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 37,
+    "fields": {
+      "cdb_code": "60-068420",
+      "name": "Α.ΚΟΝΤΑΚΗ Α. ΠΑΠΑΚΩΣΤΑ  Ο.Ε.",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΑΝΤΡΕΑ ΠΑΠΑΝΔΡΕΟΥ 128",
+      "city": "ΜΑΣΤΑΜΠΑΣ",
+      "county": "Π.Ε. ΗΡΑΚΛΕΙΟΥ",
+      "department": "ΚΡΗΤΗ",
+      "district": "EAST (NF)",
+      "territory": "E_08_ΜΑΡΔΑΒΑΝΗ",
+      "warehouse": "Γ. ΣΤΕΦΑΝΟΓΛΟΥ ΚΑΙ ΣΙΑ ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2810315666",
+      "mobile": "6973250898",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 38,
+    "fields": {
+      "cdb_code": "60-053132",
+      "name": "ΠΗΛΙΟΣ ΚΩΣΤΑΣ ΑΗΔΩΝΗΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "BaseLine",
+      "address": "ΒΑΛΑΩΡΙΤΟΥ16",
+      "city": "ΚΑΛΑΜΑΤΑ",
+      "county": "Π.Ε. ΜΕΣΣΗΝΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_08. ΚΑΛΛΙΝΤΕΡΗ",
+      "warehouse": "Β.ΠΟΛΥΧΡΟΝΟΠΟΥΛΟΥ & ΙΚΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2721020706",
+      "mobile": "6982079930",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 39,
+    "fields": {
+      "cdb_code": "60-081648",
+      "name": "GOLD KIOSK Ε.Ε.",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΚΟΥΡΤΙΔΟΥ 43",
+      "city": "ΑΘΗΝΑ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_01. ΖΙΟΥΒΑ",
+      "warehouse": "Σ. Δ.ΣΤΑΥΡΟΠΟΥΛΟΣ ΔΙΑΝΟΜΕΣ ΑΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "6932917514",
+      "mobile": "2108327171",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 40,
+    "fields": {
+      "cdb_code": "60-099695",
+      "name": "K2 UNION E.E.",
+      "pos_type": "CONVENIENCE",
+      "priority": "Strategic",
+      "address": "ΚΑΦΑΝΤΑΡΗ 15",
+      "city": "ΝΕΟΣ ΚΟΣΜΟΣ",
+      "county": "Π.Ε. ΚΕΝΤΡΙΚΟΥ ΤΟΜΕΑ ΑΘΗΝΩΝ",
+      "department": "ΑΤΤΙΚΗ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_03. ΜΠΑΛΑΜΑΤΣΗ",
+      "warehouse": "ΔΗΜΗΤΡΙΟΣ ΑΛΕΞΙΟΥ A.E",
+      "chain": "4ALL (I.S.N.   A.E.)",
+      "contractor": "JTI",
+      "telephone": "",
+      "mobile": "6940087575",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 41,
+    "fields": {
+      "cdb_code": "60-034550",
+      "name": "ΛΕΧΟΥΡΙΤΗΣ ΚΩΝΣΤΑΝΤΙΝΟΣ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Prime",
+      "address": "ΠΑΤΡΩΝ ΠΥΡΓΟΥ 126 ΑΚΤΗ ΔΥΜΑΙΩΝ",
+      "city": "ΠΑΤΡΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΓΙΑΝΝΑΚΟΠΟΥΛΟΣ ΑΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2610528758",
+      "mobile": "6946463303",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 42,
+    "fields": {
+      "cdb_code": "60-053182",
+      "name": "ΒΑΖΑΚΟΠΟΥΛΟΣ ΗΡΑΚΛΗΣ & ΣΙΑ Ο.Ε",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Developing",
+      "address": "ΕΥΒΟΙΑΣ 151",
+      "city": "ΠΑΤΡΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΓΙΑΝΝΑΚΟΠΟΥΛΟΣ ΑΕ",
+      "chain": "VAZAKOPOULOS KIOSKS",
+      "contractor": "JTI",
+      "telephone": "2610329329",
+      "mobile": "6942224660",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 43,
+    "fields": {
+      "cdb_code": "60-055876",
+      "name": "ΤΣΙΛΗ ΕΛΛΗ (ΥΠΟΚ)",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Developing",
+      "address": "ΕΥΒΟΙΑΣ 190",
+      "city": "ΠΑΤΡΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΓΙΑΝΝΑΚΟΠΟΥΛΟΣ ΑΕ",
+      "chain": "NA",
+      "contractor": "Competition",
+      "telephone": "",
+      "mobile": "6943215199",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 44,
+    "fields": {
+      "cdb_code": "60-062117",
+      "name": "ΚΟΥΖΙΟΥ Χ.ΜΑΡΙΑ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Developing",
+      "address": "ΠΛΑΤΕΙΑ ΔΗΜΟΚΡΑΤΙΑΣ",
+      "city": "ΚΑΤΩ ΑΧΑΙΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΜΠΟΥΧΕΛΟΣ ΔΗΜ& ΥΙΟΙ ΟΕ       3",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2693022782",
+      "mobile": "6938956641",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 45,
+    "fields": {
+      "cdb_code": "60-063183",
+      "name": "ΑΦΟΙ ΑΡΓΥΡΟΥ & ΣΙΑ Ο.Ε.",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΕΘΝΙΚΗΣ ΠΑΛΑΙΟΚΑΣΤΡΙΤΣΑΣ",
+      "city": "ΚΕΡΚΥΡΑ",
+      "county": "Π.Ε. ΚΕΡΚΥΡΑΣ",
+      "department": "ΝΗΣΙΑ ΙΟΝΙΟΥ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_08. ΚΙΤΣΙΟΥ",
+      "warehouse": "ΚΑΥΚΙΑΣ ΚΩΝ/ΝΟΣ & ΣΙΑ ΟΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2661024804",
+      "mobile": "6972925208",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 46,
+    "fields": {
+      "cdb_code": "60-055159",
+      "name": "COMPLOI EYG.ANDREAS",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Strategic",
+      "address": "ΠΑΤΡΩΝ 62",
+      "city": "ΠΥΡΓΟΣ",
+      "county": "Π.Ε. ΗΛΕΙΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_07. ΚΑΡΑΙΣΚΟΥ",
+      "warehouse": "Μ.Κ. ΠΕΤΡΟΓΙΑΝΝΗ & ΣΙΑ Ο.Ε.",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2621035976",
+      "mobile": "6973625364",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 47,
+    "fields": {
+      "cdb_code": "60-062102",
+      "name": "ΠΑΠΑΔΟΠΟΥΛΟΥ ΠΑΝ.ΜΑΡΙΑ ΚΑΙ ΣΙΑ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΑΚΡΩΤΗΡΙΟΥ 129",
+      "city": "ΠΑΤΡΑ",
+      "county": "Π.Ε. ΑΧΑΪΑΣ",
+      "department": "ΠΕΛΟΠΟΝΝΗΣΟΣ",
+      "district": "WEST (STK)",
+      "territory": "W_06. ΧΡΙΣΤΑΡΑ",
+      "warehouse": "ΓΙΑΝΝΑΚΟΠΟΥΛΟΣ ΑΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2610327690",
+      "mobile": "6948380037",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 48,
+    "fields": {
+      "cdb_code": "60-074868",
+      "name": "ΟΙΚΟΝΟΜΟΥ ΚΩΝΣΤΑΝΤΙΝΟΣ",
+      "pos_type": "SM",
+      "priority": "Strategic",
+      "address": "ΒΑΣΙΛΙΚΩΝ 13",
+      "city": "ΛΑΜΙΑ",
+      "county": "Π.Ε. ΦΘΙΩΤΙΔΑΣ",
+      "department": "ΣΤΕΡΕΑ ΕΛΛΑΔΑ",
+      "district": "CENTRAL (DKR)",
+      "territory": "C_06. ΠΑΣΧΑΛΟΥΔΗ",
+      "warehouse": "ΝΙΚΟΛΑΟΣ ΒΕΤΤΑΣ ΙΚΕ",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2231025310",
+      "mobile": "6973042875",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 49,
+    "fields": {
+      "cdb_code": "60-085904",
+      "name": "ΚΟΥΤΟΥΛΗ ΑΝΑΣΤ.ΔΩΡΟΘΕΑ",
+      "pos_type": "ΨΙΛΙΚΟ",
+      "priority": "Strategic",
+      "address": "ΕΛΙΑΣ 6",
+      "city": "ΒΕΡΟΙΑ",
+      "county": "Π.Ε. ΗΜΑΘΙΑΣ",
+      "department": "ΚΕΝΤΡΙΚΗ ΜΑΚΕΔΟΝΙΑ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T06. ΚΟΝΤΟΓΟΥΛΑ",
+      "warehouse": "ΠΑΠΑΖΗΣΗ ΑΦΟΙ ΟΕ (ΥΠΟΚ.)",
+      "chain": "NA",
+      "contractor": "JTI",
+      "telephone": "2331400210",
+      "mobile": "6932668822",
+      "is_active": true
+    }
+  },
+  {
+    "model": "scheduling.pointofsale",
+    "pk": 50,
+    "fields": {
+      "cdb_code": "60-056995",
+      "name": "ΚΑΡΑΚΕΧΑΓΙΑΣ ΘΕΟΧΑΡΗΣ",
+      "pos_type": "ΠΕΡΙΠΤΕΡΟ",
+      "priority": "Prime",
+      "address": "ΣΤΑΥΡΟΣ (2)",
+      "city": "ΣΤΑΥΡΟΣ",
+      "county": "Π.Ε. ΘΕΣΣΑΛΟΝΙΚΗΣ",
+      "department": "ΘΕΣΣΑΛΟΝΙΚΗ",
+      "district": "NORTH (TKO)",
+      "territory": "N_T02. ΚΑΡΑΜΑΔΟΥΚΗ",
+      "warehouse": "ΓΕΦΩΞ ΑΕ",
+      "chain": "NA",
+      "contractor": "Competition",
+      "telephone": "2397061130",
+      "mobile": "6972057513",
+      "is_active": true
+    }
+  }
+]
