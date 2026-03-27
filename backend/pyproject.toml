@@ -1,3 +1,26 @@
+[project]
+name = "jti-backend"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=6.0",
+    "djangorestframework>=3.17",
+    "djangorestframework-simplejwt>=5.5",
+    "django-cors-headers>=4.9",
+    "openpyxl>=3.1",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "black>=26.0",
+    "isort>=8.0",
+    "flake8>=7.0",
+    "coverage[toml]>=7.0",
+]
+
 [tool.black]
 line-length = 88
 exclude = '''
@@ -6,3 +29,17 @@ exclude = '''
   | migrations
 )/
 '''
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    ".venv/*",
+    "*/migrations/*",
+    "manage.py",
+    "config/wsgi.py",
+    "config/asgi.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
