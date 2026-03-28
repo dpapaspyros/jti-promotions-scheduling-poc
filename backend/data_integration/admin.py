@@ -1,3 +1,4 @@
+import glob
 import os
 
 from django.contrib import admin, messages
@@ -16,10 +17,6 @@ SAMPLE_FILES = {
         SAMPLE_DATA_DIR, "sample_promoters.csv"
     ),
     DataSyncLog.SyncType.POS: os.path.join(SAMPLE_DATA_DIR, "sample_pos.csv"),
-    DataSyncLog.SyncType.METRICS: os.path.join(
-        SAMPLE_DATA_DIR,
-        "period_2026-04-01_2026-04-30_previous_year_metrics.csv",
-    ),
 }
 
 IMPORTERS = {
@@ -61,13 +58,16 @@ class DataSyncLogAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-    def changelist_view(self, request, extra_context=None):
-        pull_type = request.POST.get("pull_type")
-        if request.method == "POST" and pull_type in IMPORTERS:
-            file_path = SAMPLE_FILES[pull_type]
-            importer = IMPORTERS[pull_type]
+    def _pull_metrics(self, request):
+        """Import all period_*.csv files from sample_data and log each one."""
+        metric_files = sorted(glob.glob(os.path.join(SAMPLE_DATA_DIR, "period_*.csv")))
+        if not metric_files:
+            messages.warning(request, "No period_*.csv files found in sample_data.")
+            return
+
+        for file_path in metric_files:
             try:
-                result = importer(file_path)
+                result = import_metrics(file_path)
                 status = DataSyncLog.Status.SUCCESS
                 notes = "; ".join(result.get("errors", []))
             except Exception as exc:
@@ -76,7 +76,7 @@ class DataSyncLogAdmin(admin.ModelAdmin):
                 notes = str(exc)
 
             DataSyncLog.objects.create(
-                sync_type=pull_type,
+                sync_type=DataSyncLog.SyncType.METRICS,
                 triggered_by=request.user,
                 status=status,
                 records_created=result.get("created", 0),
@@ -87,15 +87,57 @@ class DataSyncLogAdmin(admin.ModelAdmin):
             )
 
             if status == DataSyncLog.Status.SUCCESS:
-                msg = (
-                    f"Pull {pull_type} complete — "
+                messages.success(
+                    request,
+                    f"Metrics {os.path.basename(file_path)} — "
                     f"{result['created']} created, "
                     f"{result['updated']} updated, "
-                    f"{result['skipped']} skipped."
+                    f"{result['skipped']} skipped.",
                 )
-                messages.success(request, msg)
             else:
-                messages.error(request, f"Pull {pull_type} failed: {notes}")
+                messages.error(
+                    request,
+                    f"Metrics {os.path.basename(file_path)} failed: {notes}",
+                )
+
+    def changelist_view(self, request, extra_context=None):
+        pull_type = request.POST.get("pull_type")
+        if request.method == "POST" and pull_type in IMPORTERS:
+            if pull_type == DataSyncLog.SyncType.METRICS:
+                self._pull_metrics(request)
+            else:
+                file_path = SAMPLE_FILES[pull_type]
+                importer = IMPORTERS[pull_type]
+                try:
+                    result = importer(file_path)
+                    status = DataSyncLog.Status.SUCCESS
+                    notes = "; ".join(result.get("errors", []))
+                except Exception as exc:
+                    result = {"created": 0, "updated": 0, "skipped": 0}
+                    status = DataSyncLog.Status.FAILED
+                    notes = str(exc)
+
+                DataSyncLog.objects.create(
+                    sync_type=pull_type,
+                    triggered_by=request.user,
+                    status=status,
+                    records_created=result.get("created", 0),
+                    records_updated=result.get("updated", 0),
+                    records_skipped=result.get("skipped", 0),
+                    file_used=os.path.basename(file_path),
+                    notes=notes,
+                )
+
+                if status == DataSyncLog.Status.SUCCESS:
+                    msg = (
+                        f"Pull {pull_type} complete — "
+                        f"{result['created']} created, "
+                        f"{result['updated']} updated, "
+                        f"{result['skipped']} skipped."
+                    )
+                    messages.success(request, msg)
+                else:
+                    messages.error(request, f"Pull {pull_type} failed: {notes}")
 
             return HttpResponseRedirect(request.path)
 

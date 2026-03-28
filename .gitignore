@@ -17,6 +17,8 @@ backend/.venv/
 
 # Django
 backend/db.sqlite3
+backend/.coverage
+backend/coverage.xml
 backend/media/
 backend/staticfiles/
 *.log

@@ -101,9 +101,13 @@ jti-promotion-scheduling-poc/
 - **Never use `pip` or `requirements.txt`. Always use `uv`.**
 
 ```bash
-backend/.venv/Scripts/uv.exe pip install <package>
-backend/.venv/Scripts/Activate.ps1   # activate (PowerShell)
+backend/.venv/Scripts/uv.exe add <package>   # install + update pyproject.toml + uv.lock
+backend/.venv/Scripts/Activate.ps1           # activate (PowerShell)
 ```
+
+> **Important:** CI runs `uv sync --frozen`, which installs from `uv.lock` exactly.
+> After adding any package with `uv add`, commit both `pyproject.toml` **and** `uv.lock` —
+> otherwise CI will fail with `ModuleNotFoundError`.
 
 ### Stack
 
