@@ -1,21 +1,18 @@
-"""
-AI schedule generation using OpenAI.
+"""Prompt templates and domain-object-to-text formatters."""
 
-Builds a structured prompt from schedule data + POS metrics, calls the
-configured model, and returns parsed visit proposals.
-"""
-
-import json
 from collections import defaultdict
-
-from django.conf import settings
-from openai import OpenAI
 
 from metrics.models import POSMetrics
 
 _DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
-_SYSTEM_PROMPT = """\
+# Thinking-tag delimiters shared with the stream parser.
+THINK_START = "<thinking>"
+THINK_END = "</thinking>"
+
+# ── System prompt ──────────────────────────────────────────────────────────────
+
+_BASE_SYSTEM_PROMPT = """\
 You are an expert promoter scheduling AI for JTI Greece.
 
 TASK: Create an optimal monthly visit schedule for JTI promoters visiting \
@@ -25,10 +22,15 @@ OPTIMIZATION GOAL: {optimization_goal}
 Use this formula to prioritise WHEN to visit (prefer peak windows where \
 this value is highest) and WHICH promoter to assign (prefer those with \
 strong past performance at a location).
+Also compute a SCHEDULE SCORE: sum the optimization formula value \
+(avg_sales * 10 + avg_interviews, or whatever the goal formula is) \
+for every scheduled visit, using the historical avg values for the \
+chosen POS time window. Include this as the "score" field (integer).
 
 OUTPUT FORMAT — respond with ONLY a JSON object in this exact structure:
 {{
   "summary": "2-3 sentences explaining your key scheduling decisions",
+  "score": <integer — total optimization score across all visits>,
   "visits": [
     {{
       "pos_id": <integer>,
@@ -52,11 +54,37 @@ RULES:
 8. Target visit frequency by priority:
    Strategic = 3–4 visits/month, Prime = 2–3, BaseLine = 1–2, Developing = 1.
 9. Spread visits across the whole month — do not cluster in one week.
+10. Each promoter works exactly 5 days per week with 2 visits per working day \
+(morning and afternoon slots). Do not exceed this unless the user says otherwise.
+11. Each promoter should work exactly 1 Saturday and 1 Sunday across the whole \
+schedule period (not per week). All other days must be Monday–Friday. \
+Override this only if the user explicitly requests different weekend availability.
+
+RESPONSE STRUCTURE — two sections in this exact order:
+
+1. Open with your reasoning inside <thinking> tags (4–8 sentences). Walk \
+through which promoters you are placing where, why you chose specific time \
+windows, how you balanced weekend coverage, and any trade-offs made. Be \
+specific — name promoters and POS where helpful.
+
+<thinking>
+...your reasoning here...
+</thinking>
+
+2. Immediately after the closing </thinking> tag output ONLY a valid JSON \
+object — no other text before or after it.
 """
 
 
-def _aggregate_metrics(pos):
-    """Return aggregated peak-window data for a POS."""
+def build_system_prompt(optimization_goal: str) -> str:
+    return _BASE_SYSTEM_PROMPT.format(optimization_goal=optimization_goal)
+
+
+# ── Domain formatters ──────────────────────────────────────────────────────────
+
+
+def _aggregate_metrics(pos) -> list[str]:
+    """Return human-readable peak-window lines for a POS."""
     qs = POSMetrics.objects.filter(pos=pos)
     if not qs.exists():
         return []
@@ -68,19 +96,19 @@ def _aggregate_metrics(pos):
         windows[key]["interviews"].append(m.interviews)
         windows[key]["days"].add(m.window_date.weekday())
 
-    result = []
+    lines = []
     for (start, end), data in sorted(windows.items()):
         avg_sales = round(sum(data["sales"]) / len(data["sales"]), 1)
         avg_interviews = round(sum(data["interviews"]) / len(data["interviews"]), 1)
         days_str = ", ".join(_DAY_NAMES[d] for d in sorted(data["days"]))
-        result.append(
+        lines.append(
             f"    {start}-{end} ({days_str}): avg {avg_sales} sales, "
             f"{avg_interviews} interviews"
         )
-    return result
+    return lines
 
 
-def _pos_line(pos):
+def _pos_block_line(pos) -> str:
     lines = [
         f"- id={pos.id} | {pos.cdb_code} | {pos.name} | "
         f"{pos.city} | Priority: {pos.priority or 'unknown'}"
@@ -90,7 +118,7 @@ def _pos_line(pos):
     return "\n".join(lines)
 
 
-def _promoter_line(promoter):
+def _promoter_block_line(promoter) -> str:
     parts = [
         f"- id={promoter.id}",
         f"{promoter.first_name} {promoter.last_name}",
@@ -103,25 +131,23 @@ def _promoter_line(promoter):
     return " | ".join(parts)
 
 
-def generate_schedule(schedule, optimization_goal: str, user_prompt: str) -> dict:
-    """
-    Call OpenAI to generate visit proposals for *schedule*.
+# ── Message builder ────────────────────────────────────────────────────────────
 
-    Returns a dict:
-        summary  – str, AI explanation
-        visits   – list of dicts with pos_id, promoter_id, date,
-                   start_time, end_time, reason
-        usage    – dict with token counts
+
+def build_messages(schedule, optimization_goal: str, user_prompt: str) -> list[dict]:
+    """
+    Build the full messages list for the LLM call.
+
+    Includes an assistant-turn primer ("<thinking>") so the model is forced
+    to continue from that tag regardless of its default output style.
     """
     pos_list = list(schedule.included_pos.select_related().all())
     promoter_list = list(schedule.included_promoters.all())
 
-    pos_block = "\n".join(_pos_line(p) for p in pos_list)
-    promoter_block = "\n".join(_promoter_line(p) for p in promoter_list)
+    pos_block = "\n".join(_pos_block_line(p) for p in pos_list)
+    promoter_block = "\n".join(_promoter_block_line(p) for p in promoter_list)
 
-    system = _SYSTEM_PROMPT.format(optimization_goal=optimization_goal)
-
-    user_message = (
+    user_content = (
         f"SCHEDULE: {schedule.name}\n"
         f"PERIOD: {schedule.period_start} to {schedule.period_end}\n\n"
         f"POINTS OF SALE ({len(pos_list)}):\n{pos_block}\n\n"
@@ -130,34 +156,9 @@ def generate_schedule(schedule, optimization_goal: str, user_prompt: str) -> dic
         "Generate the complete visit schedule now."
     )
 
-    import pdb
-
-    pdb.set_trace()
-    client_kwargs = {"api_key": settings.OPENAI_API_KEY}
-    base_url = getattr(settings, "OPENAI_BASE_URL", None)
-    if base_url:
-        client_kwargs["base_url"] = base_url
-
-    client = OpenAI(**client_kwargs)
-    response = client.chat.completions.create(
-        model=settings.OPENAI_MODEL,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": user_message},
-        ],
-        temperature=0.2,
-    )
-
-    raw = response.choices[0].message.content
-    result = json.loads(raw)
-
-    return {
-        "summary": result.get("summary", ""),
-        "visits": result.get("visits", []),
-        "usage": {
-            "prompt_tokens": response.usage.prompt_tokens,
-            "completion_tokens": response.usage.completion_tokens,
-            "total_tokens": response.usage.total_tokens,
-        },
-    }
+    return [
+        {"role": "system", "content": build_system_prompt(optimization_goal)},
+        {"role": "user", "content": user_content},
+        # Primer: forces the model to continue from <thinking>
+        {"role": "assistant", "content": THINK_START},
+    ]

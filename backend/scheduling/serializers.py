@@ -17,6 +17,7 @@ class ScheduleSerializer(serializers.ModelSerializer):
             "period_start",
             "period_end",
             "status",
+            "score",
             "created_by",
             "created_at",
             "pos_count",

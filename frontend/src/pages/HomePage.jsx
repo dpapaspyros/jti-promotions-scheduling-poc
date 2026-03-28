@@ -133,6 +133,7 @@ export default function HomePage() {
                   <TableCell>Status</TableCell>
                   <TableCell>POS</TableCell>
                   <TableCell>Promoters</TableCell>
+                  <TableCell>Score</TableCell>
                   <TableCell>Created by</TableCell>
                   <TableCell>Created at</TableCell>
                 </TableRow>
@@ -141,7 +142,7 @@ export default function HomePage() {
                 {schedules.length === 0 ? (
                   <TableRow>
                     <TableCell
-                      colSpan={7}
+                      colSpan={8}
                       align="center"
                       sx={{ py: 6, color: "text.secondary" }}
                     >
@@ -170,6 +171,9 @@ export default function HomePage() {
                       </TableCell>
                       <TableCell>{s.pos_count}</TableCell>
                       <TableCell>{s.promoter_count}</TableCell>
+                      <TableCell sx={{ color: s.score != null ? "text.primary" : "text.disabled" }}>
+                        {s.score != null ? s.score.toLocaleString() : "—"}
+                      </TableCell>
                       <TableCell>{s.created_by}</TableCell>
                       <TableCell sx={{ color: "text.secondary" }}>
                         {formatDate(s.created_at)}

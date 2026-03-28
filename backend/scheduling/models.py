@@ -81,6 +81,7 @@ class Schedule(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    score = models.IntegerField(null=True, blank=True)
     notes = models.TextField(blank=True)
     included_pos = models.ManyToManyField(
         "PointOfSale", blank=True, related_name="schedules_included"

@@ -7,6 +7,7 @@ export const MOCK_SCHEDULES = [
     period_start: "2026-04-01",
     period_end: "2026-04-30",
     status: "Published",
+    score: 1240,
     created_by: "admin",
     created_at: "2026-03-15T10:00:00Z",
     pos_count: 50,
@@ -18,6 +19,7 @@ export const MOCK_SCHEDULES = [
     period_start: "2026-05-01",
     period_end: "2026-05-31",
     status: "Draft",
+    score: null,
     created_by: "admin",
     created_at: "2026-03-20T09:00:00Z",
     pos_count: 30,
@@ -74,13 +76,46 @@ export const handlers = [
     )
   ),
   http.get("/api/schedules/:id/visits/", () => HttpResponse.json(MOCK_VISITS)),
-  http.post("/api/schedules/:id/generate/", () =>
-    HttpResponse.json({
-      summary: "Generated 1 visit based on peak windows.",
-      visits: MOCK_VISITS,
-      usage: { prompt_tokens: 400, completion_tokens: 150, total_tokens: 550 },
-      errors: [],
+  http.post("/api/schedules/:id/generate/", () => {
+    const encoder = new TextEncoder();
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(
+          encoder.encode(
+            'data: {"type":"thinking","delta":"Analysing peak hours across Points of Sale…"}\n\n'
+          )
+        );
+        controller.enqueue(
+          encoder.encode(
+            `data: ${JSON.stringify({
+              type: "done",
+              summary: "Generated 1 visit based on peak windows.",
+              score: 450,
+              visits: MOCK_VISITS,
+              usage: { prompt_tokens: 400, completion_tokens: 150, total_tokens: 550 },
+              errors: [],
+            })}\n\n`
+          )
+        );
+        controller.close();
+      },
+    });
+    return new HttpResponse(stream, {
+      headers: { "Content-Type": "text/event-stream" },
+    });
+  }),
+  http.post("/api/schedules/:id/publish/", ({ params }) => {
+    const schedule = MOCK_SCHEDULES.find((s) => s.id === Number(params.id));
+    if (!schedule) return new HttpResponse(null, { status: 404 });
+    return HttpResponse.json({ ...schedule, status: "Published" });
+  }),
+  http.get("/api/schedules/:id/export/", () =>
+    new HttpResponse(new Blob(["xlsx-content"], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }), {
+      headers: { "Content-Disposition": 'attachment; filename="schedule.xlsx"' },
     })
+  ),
+  http.post("/api/schedules/:id/import/", () =>
+    HttpResponse.json({ visits: MOCK_VISITS, errors: [] })
   ),
   http.get("/api/pos/", () => HttpResponse.json(MOCK_POS)),
   http.get("/api/promoters/", () => HttpResponse.json(MOCK_PROMOTERS)),
