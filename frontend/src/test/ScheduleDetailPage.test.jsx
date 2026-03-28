@@ -75,25 +75,34 @@ describe("ScheduleDetailPage", () => {
     expect(screen.getByText("Alice Smith")).toBeInTheDocument();
   });
 
-  it("shows AI generation panel", async () => {
-    renderDetailPage();
+  it("shows AI generation panel for Draft schedule", async () => {
+    renderDetailPage("2");
 
     await waitFor(() => {
       expect(screen.getByText("AI Schedule Generation")).toBeInTheDocument();
     });
     expect(
-      screen.getByRole("button", { name: /regenerate/i })
+      screen.getByRole("button", { name: /generate/i })
     ).toBeInTheDocument();
   });
 
+  it("does not show AI generation panel for Published schedule", async () => {
+    renderDetailPage("1");
+
+    await waitFor(() => {
+      expect(screen.getByText("April 2026")).toBeInTheDocument();
+    });
+    expect(screen.queryByText("AI Schedule Generation")).not.toBeInTheDocument();
+  });
+
   it("calls generate and displays AI summary", async () => {
-    renderDetailPage();
+    renderDetailPage("2");
 
     await waitFor(() => {
       expect(screen.getByText("AI Schedule Generation")).toBeInTheDocument();
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /regenerate/i }));
+    fireEvent.click(screen.getByRole("button", { name: /generate/i }));
 
     await waitFor(() => {
       expect(
@@ -113,13 +122,13 @@ describe("ScheduleDetailPage", () => {
       )
     );
 
-    renderDetailPage();
+    renderDetailPage("2");
 
     await waitFor(() => {
       expect(screen.getByText("AI Schedule Generation")).toBeInTheDocument();
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /regenerate/i }));
+    fireEvent.click(screen.getByRole("button", { name: /generate/i }));
 
     await waitFor(() => {
       expect(
@@ -313,11 +322,20 @@ describe("ScheduleDetailPage", () => {
 
   // ── Import ───────────────────────────────────────────────────────────────
 
-  it("shows Import button", async () => {
+  it("does not show Import button for Published schedule", async () => {
     renderDetailPage("1");
 
     await waitFor(() => {
       expect(screen.getByText("April 2026")).toBeInTheDocument();
+    });
+    expect(screen.queryByRole("button", { name: /import/i })).not.toBeInTheDocument();
+  });
+
+  it("shows Import button for Draft schedule", async () => {
+    renderDetailPage("2");
+
+    await waitFor(() => {
+      expect(screen.getByText("May 2026")).toBeInTheDocument();
     });
     expect(screen.getByRole("button", { name: /import/i })).toBeInTheDocument();
   });
@@ -328,10 +346,10 @@ describe("ScheduleDetailPage", () => {
       http.get("/api/schedules/:id/visits/", () => HttpResponse.json([]))
     );
 
-    const { container } = renderDetailPage("1");
+    const { container } = renderDetailPage("2");
 
     await waitFor(() => {
-      expect(screen.getByText("April 2026")).toBeInTheDocument();
+      expect(screen.getByText("May 2026")).toBeInTheDocument();
     });
     expect(screen.queryByText("Kiosk Alpha")).not.toBeInTheDocument();
 
@@ -356,10 +374,10 @@ describe("ScheduleDetailPage", () => {
       )
     );
 
-    const { container } = renderDetailPage("1");
+    const { container } = renderDetailPage("2");
 
     await waitFor(() => {
-      expect(screen.getByText("April 2026")).toBeInTheDocument();
+      expect(screen.getByText("May 2026")).toBeInTheDocument();
     });
 
     const fileInput = container.querySelector('input[type="file"]');
@@ -380,10 +398,10 @@ describe("ScheduleDetailPage", () => {
       )
     );
 
-    const { container } = renderDetailPage("1");
+    const { container } = renderDetailPage("2");
 
     await waitFor(() => {
-      expect(screen.getByText("April 2026")).toBeInTheDocument();
+      expect(screen.getByText("May 2026")).toBeInTheDocument();
     });
 
     const fileInput = container.querySelector('input[type="file"]');

@@ -552,6 +552,7 @@ export default function ScheduleDetailPage() {
   }
 
   const chip = STATUS_CHIP[schedule.status] ?? { label: schedule.status, color: "default" };
+  const isDraft = schedule.status === "Draft";
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
@@ -650,10 +651,10 @@ export default function ScheduleDetailPage() {
         </Box>
 
         {/* Two-column layout */}
-        <Box sx={{ display: "grid", gridTemplateColumns: "340px 1fr", gap: 3, alignItems: "start" }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: isDraft ? "340px 1fr" : "1fr", gap: 3, alignItems: "start" }}>
 
-          {/* ── Left: AI generation panel ── */}
-          <Paper variant="outlined" sx={{ p: 2.5, position: "sticky", top: 24 }}>
+          {/* ── Left: AI generation panel — Draft only ── */}
+          {isDraft && <Paper variant="outlined" sx={{ p: 2.5, position: "sticky", top: 24 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
               <AutoAwesomeIcon fontSize="small" sx={{ color: "text.secondary" }} />
               <Typography variant="subtitle2">AI Schedule Generation</Typography>
@@ -725,13 +726,13 @@ export default function ScheduleDetailPage() {
                 </Typography>
               </Tooltip>
             )}
-          </Paper>
+          </Paper>}
 
           {/* ── Right: thinking stream / placeholder / visit table ── */}
           <Box>
-            {generating && thinkingText ? (
+            {isDraft && generating && thinkingText ? (
               <ThinkingPanel text={thinkingText} stalled={thinkingStalled} />
-            ) : generating ? (
+            ) : isDraft && generating ? (
               <GeneratingPlaceholder />
             ) : (
               <>
@@ -740,7 +741,9 @@ export default function ScheduleDetailPage() {
                   <Typography variant="subtitle2" color="text.secondary">
                     {visits.length > 0
                       ? `${filteredVisits.length} of ${visits.length} visits`
-                      : "No visits yet — generate a schedule to get started"}
+                      : isDraft
+                        ? "No visits yet — generate a schedule to get started"
+                        : "No visits scheduled."}
                   </Typography>
                   <Box sx={{ display: "flex", gap: 1 }}>
                     <Button
@@ -752,25 +755,29 @@ export default function ScheduleDetailPage() {
                     >
                       Export
                     </Button>
-                    <Button
-                      size="small"
-                      variant="outlined"
-                      startIcon={importing ? <CircularProgress size={14} color="inherit" /> : <FileUploadIcon fontSize="small" />}
-                      onClick={() => importInputRef.current?.click()}
-                      disabled={importing}
-                    >
-                      {importing ? "Importing…" : "Import"}
-                    </Button>
-                    <input
-                      ref={importInputRef}
-                      type="file"
-                      accept=".xlsx"
-                      style={{ display: "none" }}
-                      onChange={handleImport}
-                    />
+                    {isDraft && (
+                      <>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          startIcon={importing ? <CircularProgress size={14} color="inherit" /> : <FileUploadIcon fontSize="small" />}
+                          onClick={() => importInputRef.current?.click()}
+                          disabled={importing}
+                        >
+                          {importing ? "Importing…" : "Import"}
+                        </Button>
+                        <input
+                          ref={importInputRef}
+                          type="file"
+                          accept=".xlsx"
+                          style={{ display: "none" }}
+                          onChange={handleImport}
+                        />
+                      </>
+                    )}
                   </Box>
                 </Box>
-                {importError && (
+                {isDraft && importError && (
                   <Alert severity="warning" sx={{ mb: 1 }} onClose={() => setImportError(null)}>
                     {importError}
                   </Alert>
