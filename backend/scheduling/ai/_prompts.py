@@ -42,7 +42,8 @@ RULES:
 1. All dates must fall within the schedule period (inclusive).
 2. A promoter cannot have two visits that overlap in time on the same day.
 3. Prefer historically peak time windows (higher avg_sales / avg_interviews).
-4. Match promoters to POS in their region (promoter base_city same or close to POS city).
+4. Match promoters to POS in their region (promoter base_city same or close to POS \
+city).
 5. Permanent and Exclusive promoters take priority; Radical for extra coverage.
 6. Each visit must be 1–4 hours. Align with the peak window start/end.
 7. Use only pos_id and promoter_id values from the lists below.
