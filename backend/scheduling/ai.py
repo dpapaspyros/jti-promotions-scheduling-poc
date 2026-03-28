@@ -130,7 +130,9 @@ def generate_schedule(schedule, optimization_goal: str, user_prompt: str) -> dic
         "Generate the complete visit schedule now."
     )
 
-    import pdb; pdb.set_trace()
+    import pdb
+
+    pdb.set_trace()
     client_kwargs = {"api_key": settings.OPENAI_API_KEY}
     base_url = getattr(settings, "OPENAI_BASE_URL", None)
     if base_url:
