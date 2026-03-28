@@ -4,6 +4,7 @@
 
 - After **any backend change**, run `make be-lint` (auto-fixes black + isort, then checks flake8).
 - After **any frontend change**, run `make fe-lint`.
+- After adding or changing frontend behaviour, run `make fe-test` to verify tests pass.
 - Fix all lint errors before considering a task complete.
 
 ---
@@ -295,6 +296,7 @@ make fe-run              # Vite dev server (:5173)
 make fe-install          # npm install
 make fe-build            # Production build
 make fe-lint             # ESLint
+make fe-test             # Vitest (run once)
 
 # Combined
 make install             # Install all deps

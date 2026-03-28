@@ -11,12 +11,16 @@ export default function HomePage() {
   useEffect(() => {
     fetch("/api/hello/", { headers: authHeaders() })
       .then((res) => {
-        if (!res.ok) throw new Error("Unauthorized");
+        if (res.status === 401) {
+          logout();
+          return;
+        }
+        if (!res.ok) throw new Error("API error");
         return res.json();
       })
-      .then((data) => setMessage(data.message))
+      .then((data) => data && setMessage(data.message))
       .catch(() => setError("Could not load data from API."));
-  }, []);
+  }, [logout]);
 
   return (
     <div style={styles.page}>

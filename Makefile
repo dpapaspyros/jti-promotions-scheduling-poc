@@ -61,6 +61,10 @@ fe-build:  ## Build frontend for production
 fe-lint:  ## Run ESLint
 	cd frontend && npm run lint
 
+.PHONY: fe-test
+fe-test:  ## Run frontend tests (Vitest)
+	cd frontend && npm test
+
 # ── Combined ───────────────────────────────────────────────────────────────────
 
 .PHONY: install
