@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -38,6 +39,7 @@ function formatDate(iso) {
 
 export default function HomePage() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [schedules, setSchedules] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -148,7 +150,12 @@ export default function HomePage() {
                   </TableRow>
                 ) : (
                   schedules.map((s) => (
-                    <TableRow key={s.id} hover>
+                    <TableRow
+                      key={s.id}
+                      hover
+                      onClick={() => navigate(`/schedules/${s.id}`)}
+                      sx={{ cursor: "pointer" }}
+                    >
                       <TableCell>{s.name}</TableCell>
                       <TableCell sx={{ whiteSpace: "nowrap" }}>
                         {formatDate(s.period_start)} – {formatDate(s.period_end)}

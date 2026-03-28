@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import serializers
 
-from .models import PointOfSale, Promoter, Schedule
+from .models import PointOfSale, Promoter, Schedule, ScheduledVisit
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
@@ -83,3 +83,23 @@ class PromoterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Promoter
         fields = ["id", "username", "first_name", "last_name", "programme_type", "team"]
+
+
+class ScheduledVisitSerializer(serializers.ModelSerializer):
+    pos = PointOfSaleSerializer(read_only=True)
+    promoter = PromoterSerializer(read_only=True)
+
+    class Meta:
+        model = ScheduledVisit
+        fields = [
+            "id",
+            "pos",
+            "promoter",
+            "date",
+            "start_time",
+            "end_time",
+            "programme_type",
+            "week_label",
+            "action",
+            "comments",
+        ]

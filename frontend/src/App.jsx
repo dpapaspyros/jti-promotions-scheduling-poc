@@ -4,6 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import ScheduleDetailPage from "./pages/ScheduleDetailPage";
 import muiTheme from "./muiTheme";
 
 export default function App() {
@@ -19,6 +20,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/schedules/:id"
+            element={
+              <ProtectedRoute>
+                <ScheduleDetailPage />
               </ProtectedRoute>
             }
           />
