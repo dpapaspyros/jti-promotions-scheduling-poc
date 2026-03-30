@@ -173,15 +173,6 @@ class ScheduleCreateTest(APITestCase):
         )
         self.assertEqual(response.status_code, 400)
 
-    def test_overlapping_period_returns_400(self):
-        _make_schedule(self.user, "Existing", date(2026, 4, 1), date(2026, 4, 30))
-        self.assertEqual(
-            self.client.post(
-                "/api/schedules/", self._payload(), format="json"
-            ).status_code,
-            400,
-        )
-
     def test_missing_name_returns_400(self):
         payload = self._payload()
         del payload["name"]

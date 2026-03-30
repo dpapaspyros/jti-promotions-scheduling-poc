@@ -217,7 +217,6 @@ Key fields: `name`, `period_start`, `period_end`, `status`, `created_by`, `inclu
 
 Constraints:
 - `period_end >= period_start`
-- **No overlapping schedules** — enforced in `clean()`
 - `included_pos` and `included_promoters` define the scope for AI generation
 
 #### `ScheduledVisit`
